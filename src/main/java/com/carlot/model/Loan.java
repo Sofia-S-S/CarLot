@@ -9,7 +9,7 @@ public class Loan {
 	private double amount;
 	private int months;
 	private double monthlyPayment;
-	private double RemainingBalance;
+	private double remainingBalance;
 	
 	public Loan() {}
 	
@@ -20,7 +20,7 @@ public class Loan {
 		this.amount = amount;
 		this.months = months;
 		this.monthlyPayment = monthlyPayment;
-		RemainingBalance = remainingBalance;
+		this.remainingBalance = remainingBalance;
 	}
 	public int getCarId() {
 		return carId;
@@ -53,15 +53,15 @@ public class Loan {
 		this.monthlyPayment = monthlyPayment;
 	}
 	public double getRemainingBalance() {
-		return RemainingBalance;
+		return remainingBalance;
 	}
 	public void setRemainingBalance(double remainingBalance) {
-		RemainingBalance = remainingBalance;
+		this.remainingBalance = remainingBalance;
 	}
 	@Override
 	public String toString() {
 		return "Loan [carId=" + carId + ", saleDate=" + saleDate + ", amount=" + amount + ", months=" + months
-				+ ", monthlyPayment=" + monthlyPayment + ", RemainingBalance=" + RemainingBalance + "]";
+				+ ", monthlyPayment=" + monthlyPayment + ", RemainingBalance=" + remainingBalance + "]";
 	}
 	
 

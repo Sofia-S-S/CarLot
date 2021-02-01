@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import com.carlot.dao.LoginDAO;
 import com.carlot.dbutil.PostresqlConnection;
 import com.carlot.exception.BusinessException;
+import com.carlot.model.Customer;
 import com.carlot.model.CustomerLogin;
 import com.carlot.model.EmployeeLogin;
 
@@ -70,6 +71,47 @@ public class LoginDAOImpl implements LoginDAO {
 			
 		} 
 		return employeeLogin;
+	}
+
+	@Override
+	public int createCustomerAndLogin(Customer customer, CustomerLogin customerLogin) throws BusinessException {
+		int cl = 0;
+		try (Connection connection=PostresqlConnection.getConnection()){
+			String sqlCust = "insert into carlot.customer (id, first_name, last-name, dob, dl, ssn, contact, address) values( ?,?,?,?,?,?,?,?)";
+			String sqlLog = "insert into carlot.customer_login (id, login, password) values( ?,?,?)";
+			
+			PreparedStatement preparedStatementCust=connection.prepareStatement(sqlCust);
+			PreparedStatement preparedStatementLog=connection.prepareStatement(sqlLog);
+			
+			connection.setAutoCommit(false); // !!!
+
+			preparedStatementCust.setInt(1, customer.getId());
+			preparedStatementCust.setString(2, customer.getFirstName());
+			preparedStatementCust.setString(3, customer.getLastName());
+			preparedStatementCust.setDate(3, new java.sql.Date(customer.getDob().getTime()));
+			preparedStatementCust.setString(5, customer.getDl());
+			preparedStatementCust.setLong(6, customer.getSsn());
+			preparedStatementCust.setLong(7, customer.getContact());
+			preparedStatementCust.setString(8, customer.getAddress());
+
+			int c = preparedStatementCust.executeUpdate();
+			
+			preparedStatementLog.setInt(1, customerLogin.getCustomerId());
+			preparedStatementLog.setString(2, customerLogin.getLogin());
+			preparedStatementLog.setString(3, customerLogin.getPassword());
+			
+			int l = preparedStatementLog.executeUpdate();
+			
+			connection.commit(); // !!!
+			
+			cl= c+l;
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			
+			throw new BusinessException("Some internal error occured. Please contact admin");
+		}
+		return cl;
 	}
 
 }

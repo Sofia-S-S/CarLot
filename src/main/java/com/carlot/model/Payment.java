@@ -4,17 +4,27 @@ import java.util.Date;
 
 public class Payment {
 	
+	private long paymentId;
 	private int carId;
 	private double amount;
 	private Date date;
 	
 	public Payment() {}
 
-	public Payment(int carId, double amount, Date date) {
+	public Payment(long paymentId, int carId, double amount, Date date) {
 		super();
+		this.paymentId = paymentId;
 		this.carId = carId;
 		this.amount = amount;
 		this.date = date;
+	}
+
+	public long getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(long paymentId) {
+		this.paymentId = paymentId;
 	}
 
 	public int getCarId() {
@@ -43,10 +53,12 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [carId=" + carId + ", amount=" + amount + ", date=" + date + "]";
+		return "Payment [paymentId=" + paymentId + ", carId=" + carId + ", amount=" + amount + ", date=" + date + "]";
 	}
-	
-	
+
+
+
+
 	
 	
 

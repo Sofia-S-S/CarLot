@@ -19,7 +19,7 @@ public class LotDAOImpl implements LotDAO{
 	public List<Car> getCarsByStatus(String status) throws BusinessException {
 		List<Car> carsList = new ArrayList<>();
 		try (Connection connection = PostresqlConnection.getConnection()) {
-			String sql="select id, body, make, model, year, color, millage, vin from carlot.car where status = ?";
+			String sql="select id, body, make, model, year, color, mileage, vin from carlot.car where status = ?";
 			PreparedStatement preparedStatement=connection.prepareStatement(sql);
 			preparedStatement.setString(1, status);
 			ResultSet resultSet=preparedStatement.executeQuery();
@@ -31,7 +31,7 @@ public class LotDAOImpl implements LotDAO{
 				car.setModel(resultSet.getString("model"));
 				car.setYear(resultSet.getInt("year"));
 				car.setColor(resultSet.getString("color"));
-				car.setMileage(resultSet.getFloat("milage"));
+				car.setMileage(resultSet.getFloat("mileage"));
 				car.setVin(resultSet.getString("vin"));
 				carsList.add(car);
 			}
@@ -51,7 +51,7 @@ public class LotDAOImpl implements LotDAO{
 	public Car getCarById(int id) throws BusinessException {
 		Car car = null;
 		try (Connection connection = PostresqlConnection.getConnection()) {
-			String sql="select body, make, model, year, color, millage, vin , status from carlot.car where id = ?";
+			String sql="select body, make, model, year, color, mileage, vin , status from carlot.car where id = ?";
 			PreparedStatement preparedStatement=connection.prepareStatement(sql);
 			preparedStatement.setInt(1, id);
 			ResultSet resultSet=preparedStatement.executeQuery();
@@ -62,7 +62,7 @@ public class LotDAOImpl implements LotDAO{
 				car.setModel(resultSet.getString("model"));
 				car.setYear(resultSet.getInt("year"));
 				car.setColor(resultSet.getString("color"));
-				car.setMileage(resultSet.getFloat("milage"));
+				car.setMileage(resultSet.getFloat("mileage"));
 				car.setVin(resultSet.getString("vin"));
 				car.setStatus(resultSet.getString("status"));
 			}else {
@@ -80,7 +80,7 @@ public class LotDAOImpl implements LotDAO{
 		int c = 0;
 		try (Connection connection=PostresqlConnection.getConnection()){
 			
-			String sql="insert into carlot.car(id, body, make, model, year, color, millage, vin , status) values(?,?,?,?,?,?,?,?,?)";
+			String sql="insert into carlot.car(id, body, make, model, year, color, mileage, vin , status) values(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement preparedStatement=connection.prepareStatement(sql);
 			preparedStatement.setInt(1, car.getId());
 			preparedStatement.setString(2, car.getBody());

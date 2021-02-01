@@ -10,12 +10,12 @@ public class Customer {
 	private String dl;
 	private long ssn;
 	private long contact;
-	private String adress;
+	private String address;
 	
 	public Customer() {}
 	
 	public Customer(int id, String firstName, String lastName, Date dob, String dl, long ssn, long contact,
-			String adress) {
+			String address) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -24,12 +24,12 @@ public class Customer {
 		this.dl = dl;
 		this.ssn = ssn;
 		this.contact = contact;
-		this.adress = adress;
+		this.address = address;
 	}
 	
 	//Constructor without id
 	public Customer(String firstName, String lastName, Date dob, String dl, long ssn, long contact,
-			String adress) {
+			String address) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -37,7 +37,7 @@ public class Customer {
 		this.dl = dl;
 		this.ssn = ssn;
 		this.contact = contact;
-		this.adress = adress;
+		this.address = address;
 	}
 	
 	public int getId() {
@@ -82,16 +82,16 @@ public class Customer {
 	public void setContact(long contact) {
 		this.contact = contact;
 	}
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob + ", dl="
-				+ dl + ", ssn=" + ssn + ", contact=" + contact + ", adress=" + adress + "]";
+				+ dl + ", ssn=" + ssn + ", contact=" + contact + ", address=" + address + "]";
 	}
 
 	
