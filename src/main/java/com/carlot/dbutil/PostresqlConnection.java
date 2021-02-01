@@ -1,4 +1,4 @@
-package com.carlot.dao.dbutil;
+package com.carlot.dbutil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

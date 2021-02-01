@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.carlot.dao.LoginDAO;
-import com.carlot.dao.dbutil.PostresqlConnection;
+import com.carlot.dbutil.PostresqlConnection;
 import com.carlot.exception.BusinessException;
 import com.carlot.model.CustomerLogin;
 import com.carlot.model.EmployeeLogin;
