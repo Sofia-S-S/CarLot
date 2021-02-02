@@ -6,8 +6,9 @@ import com.carlot.exception.BusinessException;
 import com.carlot.model.Loan;
 import com.carlot.model.Offer;
 import com.carlot.model.Payment;
+import com.carlot.service.SaleService;
 
-public class SaleServiceImpl implements SaleDAO{
+public class SaleServiceImpl implements SaleService{
 	
 	SaleDAO dao = new SaleDAOImpl();
 

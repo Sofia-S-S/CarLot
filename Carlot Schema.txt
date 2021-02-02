@@ -1,0 +1,70 @@
+CREATE TABLE carlot.employee_login (
+	employee_id varchar UNIQUE NOT NULL,
+	password varchar(30) NOT NULL,
+	name varchar(30) NOT NULL,
+	PRIMARY KEY (employee_id)
+);
+
+CREATE TABLE carlot.customer (
+	id int UNIQUE NOT NULL,
+	first_name varchar(30) NOT NULL,
+	last_name varchar(30) NOT NULL,
+	dob date NOT NULL,
+	dl varchar(15) UNIQUE NOT NULL,
+	ssn int8 UNIQUE NOT NULL,
+	contact int8 NULL,
+	address varchar(60) NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE carlot.customer_login (
+	customer_id int UNIQUE NOT NULL,
+	login varchar(12) NOT NULL,
+	password varchar(12) NOT NULL,
+	CONSTRAINT customer_login_fk FOREIGN KEY (customer_id) REFERENCES carlot.customer(id)
+);
+
+CREATE TABLE carlot.car (
+	id int UNIQUE NOT NULL,
+	body varchar(30) NULL,
+	make varchar(30) NOT NULL,
+	model varchar(30) NOT NULL,
+	year int NOT NULL,
+	color varchar(30) NULL,
+	mileage int8 NULL,
+	vin varchar(17) UNIQUE NOT NULL,
+	status varchar(10) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE carlot.offer (
+	offer_id int8 UNIQUE NOT NULL,
+	car_id int NOT NULL,
+	amount double precision NOT NULL,
+	status varchar(12) NOT NULL,
+	customer_id int NOT NULL,
+	date date NULL,
+	PRIMARY KEY (offer_id),
+	CONSTRAINT offer_carfk FOREIGN KEY (car_id) REFERENCES carlot.car(id),
+	CONSTRAINT offer_custfk FOREIGN KEY (customer_id) REFERENCES carlot.customer(id)
+);
+
+
+CREATE TABLE carlot.loan (
+	car_id int UNIQUE NOT NULL,
+	amount double precision NOT NULL,
+	sale_date date NULL,
+	lengths int NOT NULL,
+	monthly_payment double precision NOT NULL,
+	remaining_balance double precision NOT NULL,
+	CONSTRAINT loan_fk FOREIGN KEY (car_id) REFERENCES carlot.car(id)	
+);
+
+CREATE TABLE carlot.payment (
+	payment_id int8 UNIQUE NOT NULL,
+	car_id int NOT NULL,
+	amount double precision NOT NULL,
+	date date NULL,
+
+	CONSTRAINT payment_fk FOREIGN KEY (car_id) REFERENCES carlot.car(id)	
+);

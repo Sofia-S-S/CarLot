@@ -2,6 +2,7 @@ package com.carlot.service;
 
 import com.carlot.exception.BusinessException;
 import com.carlot.model.Loan;
+import com.carlot.model.Offer;
 import com.carlot.model.Payment;
 
 public interface SaleService {
@@ -10,4 +11,5 @@ public interface SaleService {
 	public int createLoan (Loan loan)  throws BusinessException;
 	public int createPayment (Payment payment) throws BusinessException;
 
+	public int createOffer(Offer offer) throws BusinessException;
 }

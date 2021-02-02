@@ -77,8 +77,8 @@ public class LoginDAOImpl implements LoginDAO {
 	public int createCustomerAndLogin(Customer customer, CustomerLogin customerLogin) throws BusinessException {
 		int cl = 0;
 		try (Connection connection=PostresqlConnection.getConnection()){
-			String sqlCust = "insert into carlot.customer (id, first_name, last-name, dob, dl, ssn, contact, address) values( ?,?,?,?,?,?,?,?)";
-			String sqlLog = "insert into carlot.customer_login (id, login, password) values( ?,?,?)";
+			String sqlCust = "insert into carlot.customer (id, first_name, last_name, dob, dl, ssn, contact, address) values( ?,?,?,?,?,?,?,?)";
+			String sqlLog = "insert into carlot.customer_login (customer_id, login, password) values( ?,?,?)";
 			
 			PreparedStatement preparedStatementCust=connection.prepareStatement(sqlCust);
 			PreparedStatement preparedStatementLog=connection.prepareStatement(sqlLog);
@@ -88,7 +88,7 @@ public class LoginDAOImpl implements LoginDAO {
 			preparedStatementCust.setInt(1, customer.getId());
 			preparedStatementCust.setString(2, customer.getFirstName());
 			preparedStatementCust.setString(3, customer.getLastName());
-			preparedStatementCust.setDate(3, new java.sql.Date(customer.getDob().getTime()));
+			preparedStatementCust.setDate(4, new java.sql.Date(customer.getDob().getTime()));
 			preparedStatementCust.setString(5, customer.getDl());
 			preparedStatementCust.setLong(6, customer.getSsn());
 			preparedStatementCust.setLong(7, customer.getContact());
@@ -108,7 +108,7 @@ public class LoginDAOImpl implements LoginDAO {
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			
-			
+			System.out.println(e);
 			throw new BusinessException("Some internal error occured. Please contact admin");
 		}
 		return cl;
