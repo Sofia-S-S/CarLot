@@ -118,14 +118,25 @@ public class LotServiceImpl implements LotService{
 	}
 
 	@Override
-	public int updateOfferStatusForReject(int offerId) throws BusinessException {
+	public int updateOfferStatusForReject(long offerId) throws BusinessException {
 		int x= 0;
-		if(offerId>100000) {
+		if(offerId>100000L) {
 			x = dao.updateOfferStatusForReject(offerId);
 		} else {
 			throw new BusinessException("Offer id " + offerId + " is INVALID......");
 		}
 		return x;
+	}
+
+	@Override
+	public Offer getOfferById(long offerId) throws BusinessException {
+		Offer offer = null;
+		if(offerId>100000) {
+			offer = dao.getOfferById(offerId);
+		} else {
+			throw new BusinessException("Offer id " + offerId + " is INVALID......");
+		}
+		return offer;
 	}
 
 }

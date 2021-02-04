@@ -14,7 +14,7 @@ import com.carlot.model.Payment;
 public class SaleDAOImpl implements SaleDAO{
 
 	@Override
-	public int approveOffer(int offerId, int carId) throws BusinessException {
+	public int approveOffer(long offerId, int carId) throws BusinessException {
 		int xyz = 0;
 		try (Connection connection=PostresqlConnection.getConnection()){	
 
@@ -28,7 +28,7 @@ public class SaleDAOImpl implements SaleDAO{
 		
 		connection.setAutoCommit(false); // !!!
 		
-		preparedStatementAccept.setInt(1, offerId);
+		preparedStatementAccept.setLong(1, offerId);
 		int x = preparedStatementAccept.executeUpdate();
 		
 		preparedStatementReject.setInt(1, carId);

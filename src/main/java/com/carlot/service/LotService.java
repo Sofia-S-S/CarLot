@@ -14,10 +14,12 @@ public interface LotService {
 	public int createCar (Car car) throws BusinessException;
 	public int deleteCar(int id) throws BusinessException;
 	
+	public Offer getOfferById(long offerId) throws BusinessException;
+	
 	public List<Offer> getOffersByStatus (String status) throws BusinessException;
 	public List<Offer> getOffersByCarId (int carId) throws BusinessException;
 	public List<Offer> getOffersByCustomerId(int customerId) throws BusinessException;
 	
-	public int updateOfferStatusForReject (int offerId)  throws BusinessException;
+	public int updateOfferStatusForReject (long id)  throws BusinessException;
 
 }

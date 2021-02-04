@@ -47,6 +47,7 @@ public class LotDAOImpl implements LotDAO{
 	}
 
 
+
 	@Override
 	public Car getCarById(int id) throws BusinessException {
 		Car car = null;
@@ -204,12 +205,12 @@ public class LotDAOImpl implements LotDAO{
 	}
 
 	@Override
-	public int updateOfferStatusForReject(int offerId) throws BusinessException {
+	public int updateOfferStatusForReject(long offerId) throws BusinessException {
 		int up = 0;
 		try (Connection connection = PostresqlConnection.getConnection()) {
 			String sql="update carlot.offer set status='rejected' where offer_id = ?";
 			PreparedStatement preparedStatement=connection.prepareStatement(sql);
-			preparedStatement.setInt(1, offerId);
+			preparedStatement.setLong(1, offerId);
 			up = preparedStatement.executeUpdate();
 
 		}catch (ClassNotFoundException | SQLException e) {
@@ -217,6 +218,34 @@ public class LotDAOImpl implements LotDAO{
 			throw new BusinessException("Internal error occured contact admin ");
 		}
 		return up;
+	}
+
+
+
+	@Override
+	public Offer getOfferById(long offerId) throws BusinessException {
+		Offer offer = null;
+		try (Connection connection = PostresqlConnection.getConnection()) {
+			String sql="select car_id, amount, date, status, customer_id from carlot.offer where offer_id = ?";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setLong(1, offerId);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				offer =new Offer();
+				offer.setCarId(resultSet.getInt("car_id"));
+				offer.setAmount(resultSet.getDouble("amount"));
+				offer.setDate(resultSet.getDate("date"));
+				offer.setStatus(resultSet.getString("status"));
+				offer.setCustomerId(resultSet.getInt("customer_id"));
+
+			} else {
+				throw new BusinessException("No offer found with id "+offerId);
+			}
+		}catch (ClassNotFoundException | SQLException e) {
+
+			throw new BusinessException("Internal error occured contact admin ");
+		}
+		return offer;
 	}
 
 }

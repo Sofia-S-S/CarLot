@@ -14,6 +14,13 @@ public class CustomerLogin {
 		this.login = login;
 		this.password = password;
 	}
+	
+	public CustomerLogin(String login, String password) {
+		super();
+
+		this.login = login;
+		this.password = password;
+	}
 
 	public int getCustomerId() {
 		return customerId;

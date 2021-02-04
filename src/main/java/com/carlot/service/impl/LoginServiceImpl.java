@@ -43,7 +43,10 @@ public class LoginServiceImpl implements LoginService{
 		if (customer.getFirstName().matches("[a-zA-Z]{4,12}")) {
 			if (customer.getLastName().matches("[a-zA-Z]{4,12}")) {
 //				Check age
-				if (customer.getDob().getYear()>21) {
+				
+
+				
+//				if (customer.getDob().getYear()>21) {
 					if (customer.getDl().matches("[a-zA-z0-9]{6,17}")) {
 						if (customer.getSsn()> 100000000L && customer.getSsn()< 999999999L ) {
 							if (customer.getContact()>1000000000L && customer.getContact()<9999999999L) {
@@ -70,9 +73,9 @@ public class LoginServiceImpl implements LoginService{
 					}  else {
 						throw new BusinessException("DL " + customer.getDl() + " is INVALID");
 					}
-				}  else {
-					throw new BusinessException("Day of Birth " + customer.getDob() + " is INVALID");
-				}
+//				}  else {
+//					throw new BusinessException("Day of Birth " + customer.getDob() + " is INVALID");
+//				}
 			}  else {
 				throw new BusinessException("Lust name " + customer.getLastName() + " is INVALID");
 			}

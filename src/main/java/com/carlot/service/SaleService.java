@@ -7,7 +7,7 @@ import com.carlot.model.Payment;
 
 public interface SaleService {
 	
-	public int approveOffer (int offerId, int carId)  throws BusinessException;
+	public int approveOffer (long offerId, int carId)  throws BusinessException;
 	public int createLoan (Loan loan)  throws BusinessException;
 	public int createPayment (Payment payment) throws BusinessException;
 

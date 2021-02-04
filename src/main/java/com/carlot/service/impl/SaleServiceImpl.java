@@ -13,9 +13,9 @@ public class SaleServiceImpl implements SaleService{
 	SaleDAO dao = new SaleDAOImpl();
 
 	@Override
-	public int approveOffer(int offerId, int carId) throws BusinessException {
+	public int approveOffer(long offerId, int carId) throws BusinessException {
 		int a = 0;
-		if ((offerId > 100000)&& carId>0) {
+		if ((offerId > 100000L)&& carId>0) {
 			a = dao.approveOffer(offerId, carId);
 		} else {
 			throw new BusinessException("Offer id " + offerId + " is INVALID......");
@@ -45,8 +45,12 @@ public class SaleServiceImpl implements SaleService{
 
 	@Override
 	public int createOffer(Offer offer) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		int c = 0;
+		if (offer.getAmount()>100) {
+			c = dao.createOffer(offer);
+		} else {
+			throw new BusinessException("Offered amount $" + offer.getAmount() + " is Too Low......");
+		}
+		return c;
 
-}
+}}

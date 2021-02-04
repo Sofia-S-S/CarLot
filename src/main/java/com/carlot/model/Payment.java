@@ -18,6 +18,12 @@ public class Payment {
 		this.amount = amount;
 		this.date = date;
 	}
+	public Payment(int carId, double amount, Date date) {
+		super();
+		this.carId = carId;
+		this.amount = amount;
+		this.date = date;
+	}
 
 	public long getPaymentId() {
 		return paymentId;

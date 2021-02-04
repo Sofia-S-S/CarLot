@@ -30,6 +30,19 @@ public class Car {
 		this.status = status;
 	}
 
+	public Car( String body, String make, String model, int year, String color, float mileage, String vin,
+			String status) {
+		super();
+
+		this.body = body;
+		this.make = make;
+		this.model = model;
+		this.year = year;
+		this.color = color;
+		this.mileage = mileage;
+		this.vin = vin;
+		this.status = status;
+	}
 
 	public int getId() {
 		return id;

@@ -23,6 +23,14 @@ public class Offer {
 		this.customerId = customerId;
 		this.date = date;
 	}
+	public Offer(int carId, double amount, String status, int customerId, Date date) {
+		super();
+		this.carId = carId;
+		this.amount = amount;
+		this.status = status;
+		this.customerId = customerId;
+		this.date = date;
+	}
 	public long getOfferId() {
 		return offerId;
 	}
