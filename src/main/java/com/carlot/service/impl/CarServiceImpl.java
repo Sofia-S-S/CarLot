@@ -3,16 +3,15 @@ package com.carlot.service.impl;
 import java.time.Year;
 import java.util.List;
 
-import com.carlot.dao.LotDAO;
-import com.carlot.dao.impl.LotDAOImpl;
+import com.carlot.dao.CarDAO;
+import com.carlot.dao.impl.CarDAOImpl;
 import com.carlot.exception.BusinessException;
 import com.carlot.model.Car;
-import com.carlot.model.Offer;
-import com.carlot.service.LotService;
+import com.carlot.service.CarService;
 
-public class LotServiceImpl implements LotService{
+public class CarServiceImpl implements CarService{
 	
-	private LotDAO dao = new LotDAOImpl();
+	private CarDAO dao = new CarDAOImpl();
 
 	@Override
 	public List<Car> getCarsByStatus(String status) throws BusinessException {
@@ -84,59 +83,6 @@ public class LotServiceImpl implements LotService{
 		return d;
 	}
 
-	@Override
-	public List<Offer> getOffersByStatus(String status) throws BusinessException {
-		List<Offer> offersList = null;
-		if(status.equals("pending") || status.equals("rejected") || status.equals("approved")) {
-			offersList = dao.getOffersByStatus(status);
-		} else {
-			throw new BusinessException("Status " + status + " is INVALID......");
-		}
-		return offersList;
-	}
-
-	@Override
-	public List<Offer> getOffersByCarId(int carId) throws BusinessException {
-		List <Offer> offersList = null;
-		if (carId > 0 && carId < 2147483647) {		
-			offersList = dao.getOffersByCarId(carId);
-		} else {
-			throw new BusinessException("Car id " + carId + " is INVALID......");
-		}
-		return offersList;
-	}
-
-	@Override
-	public List<Offer> getOffersByCustomerId(int customerId) throws BusinessException {
-		List <Offer> offersList = null;
-		if (customerId > 0 && customerId < 2147483647) {		
-			offersList = dao.getOffersByCustomerId(customerId);
-		} else {
-			throw new BusinessException("Customer id " + customerId + " is INVALID......");
-		}
-		return offersList;
-	}
-
-	@Override
-	public int updateOfferStatusForReject(long offerId) throws BusinessException {
-		int x= 0;
-		if(offerId>100000L) {
-			x = dao.updateOfferStatusForReject(offerId);
-		} else {
-			throw new BusinessException("Offer id " + offerId + " is INVALID......");
-		}
-		return x;
-	}
-
-	@Override
-	public Offer getOfferById(long offerId) throws BusinessException {
-		Offer offer = null;
-		if(offerId>100000) {
-			offer = dao.getOfferById(offerId);
-		} else {
-			throw new BusinessException("Offer id " + offerId + " is INVALID......");
-		}
-		return offer;
-	}
+	
 
 }

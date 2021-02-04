@@ -15,13 +15,15 @@ import com.carlot.model.CustomerLogin;
 import com.carlot.model.EmployeeLogin;
 import com.carlot.model.Offer;
 import com.carlot.model.Payment;
+import com.carlot.service.CarService;
 import com.carlot.service.LoginService;
-import com.carlot.service.LotService;
-import com.carlot.service.SaleService;
+import com.carlot.service.OfferService;
+import com.carlot.service.PaymentService;
 import com.carlot.service.impl.AgeCulculator;
+import com.carlot.service.impl.CarServiceImpl;
 import com.carlot.service.impl.LoginServiceImpl;
-import com.carlot.service.impl.LotServiceImpl;
-import com.carlot.service.impl.SaleServiceImpl;
+import com.carlot.service.impl.OfferServiceImpl;
+import com.carlot.service.impl.PaymentServiceImpl;
 
 public class Driver {
 	
@@ -34,8 +36,9 @@ public class Driver {
 		int ch = 0;
 
 		LoginService loginService = new LoginServiceImpl();
-		LotService lotService = new LotServiceImpl();
-		SaleService saleService = new SaleServiceImpl();
+		CarService carService = new CarServiceImpl();
+		OfferService offerService = new OfferServiceImpl();
+		PaymentService payService = new PaymentServiceImpl();
 		AgeCulculator ag = new AgeCulculator();
 		
 		do {
@@ -113,7 +116,7 @@ public class Driver {
 									
 			//--1.1.1------------------------------------ Cars for Sale -------------------------------------
 									case 1:
-										try { List<Car> cars = lotService.getCarsByStatus("for sale");
+										try { List<Car> cars = carService.getCarsByStatus("for sale");
 											if (cars != null) {
 												for(Car c: cars) {
 													log.info(c);
@@ -167,7 +170,7 @@ public class Driver {
 										double amount = Double.parseDouble(sc.nextLine());
 
 										Offer offer = new Offer(carId, amount,"pending", customerId, new Date());
-										if(saleService.createOffer(offer) != 0) {
+										if(offerService.createOffer(offer) != 0) {
 											log.info("CarLot received your offer");
 										}
 									}catch (BusinessException e) {
@@ -178,7 +181,7 @@ public class Driver {
 				//--1.2.2------------------------------------ See my offers -------------------------------------
 									case 2:
 										try {
-											List<Offer> offersList = lotService.getOffersByCustomerId(customerId);
+											List<Offer> offersList = offerService.getOffersByCustomerId(customerId);
 											if (offersList !=null) {
 												log.info("Your offers :");
 												for (Offer o : offersList) {
@@ -227,7 +230,7 @@ public class Driver {
 											double amount = Double.parseDouble(sc.nextLine());
 
 											Payment payment = new Payment(carId, amount, new Date());
-											int p = saleService.createPayment(payment);
+											int p = payService.createPayment(payment);
 											if (p !=0) {
 												log.info("You succsessfully payed $"+amount+" for car with id "+carId);
 											}
@@ -411,7 +414,7 @@ public class Driver {
 											log.info("Enter a car ID");
 											int id = Integer.parseInt(sc.nextLine());	
 											
-											Car car = lotService.getCarById(id);
+											Car car = carService.getCarById(id);
 										if (car != null) {
 
 												log.info(car);
@@ -425,7 +428,7 @@ public class Driver {
 
 			//--3.1.2------------------------------------ For Sale -------------------------------------
 									case 2:
-										try { List<Car> cars = lotService.getCarsByStatus("for sale");
+										try { List<Car> cars = carService.getCarsByStatus("for sale");
 										if (cars != null) {
 											for(Car c: cars) {
 												log.info(c);
@@ -438,7 +441,7 @@ public class Driver {
 									break;
 			//--3.1.3------------------------------------ Sold Cars -------------------------------------
 									case 3:
-										try { List<Car> cars = lotService.getCarsByStatus("sold");
+										try { List<Car> cars = carService.getCarsByStatus("sold");
 										if (cars != null) {
 											for(Car c: cars) {
 												log.info(c);
@@ -470,7 +473,7 @@ public class Driver {
 									
 									Car car = new Car(body, make, model, year, color, mileage, vin, "for sale");
 									
-									if (lotService.createCar(car) != 0) {
+									if (carService.createCar(car) != 0) {
 										log.info("A car has been added successfully");
 									};
 
@@ -488,7 +491,7 @@ public class Driver {
 									int id = Integer.parseInt(sc.nextLine());	
 									
 
-								if (lotService.deleteCar(id) != 0) {
+								if (carService.deleteCar(id) != 0) {
 
 										log.info("Car deleted successfully");
 
@@ -554,7 +557,7 @@ public class Driver {
 					//--3.2.1.1------------------------------------ Pending offers  -------------------------------------
 											case 1:
 												try { 
-													List<Offer> offers = lotService.getOffersByStatus("pending");
+													List<Offer> offers = offerService.getOffersByStatus("pending");
 													if (offers != null) {
 														log.info("All pending offers");
 														for(Offer o: offers) {
@@ -568,7 +571,7 @@ public class Driver {
 			         //--3.2.1.2------------------------------------ Rejected offers  -------------------------------------
 											case 2:
 												try {
-													List<Offer> offers = lotService.getOffersByStatus("rejected");
+													List<Offer> offers = offerService.getOffersByStatus("rejected");
 													if (offers != null) {
 														log.info("All rejected offers");
 														for(Offer o: offers) {
@@ -583,7 +586,7 @@ public class Driver {
 											case 3:
 												log.info("Enter a Car ID");
 												try { int id = Integer.parseInt(sc.nextLine());	
-													List<Offer> offers = lotService.getOffersByCarId(id);
+													List<Offer> offers = offerService.getOffersByCarId(id);
 												if (offers != null) {
 													log.info("All offers for car with  id "+id);
 													for(Offer o: offers) {
@@ -610,7 +613,7 @@ public class Driver {
 										try {
 											log.info("Enter an Offer ID");
 											long id = Long.parseLong(sc.nextLine());	
-											Offer offer = lotService.getOfferById(id);
+											Offer offer = offerService.getOfferById(id);
 											
 											if (offer != null) {
 
@@ -633,7 +636,7 @@ public class Driver {
 			//--2.5.1------------------------------------ Approve -------------------------------------
 											case 1:
 												
-												if (saleService.approveOffer(id, carId) != 0) {
+												if (offerService.approveOffer(id, carId) != 0) {
 													log.info("Offer approved successfully");
 												}
 
@@ -641,7 +644,7 @@ public class Driver {
 			//--2.5.1------------------------------------ Reject  -------------------------------------
 											case 2:
 											
-												if (lotService.updateOfferStatusForReject(id) !=0){
+												if (offerService.updateOfferStatusForReject(id) !=0){
 													log.info("Offer rejected successfully");
 												}
 												break;

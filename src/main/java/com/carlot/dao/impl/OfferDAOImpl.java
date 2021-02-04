@@ -7,119 +7,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.carlot.dao.LotDAO;
+import com.carlot.dao.OfferDAO;
 import com.carlot.dbutil.PostresqlConnection;
 import com.carlot.exception.BusinessException;
-import com.carlot.model.Car;
 import com.carlot.model.Offer;
 
-public class LotDAOImpl implements LotDAO{
+public class OfferDAOImpl implements OfferDAO {
 
+	
 	@Override
-	public List<Car> getCarsByStatus(String status) throws BusinessException {
-		List<Car> carsList = new ArrayList<>();
-		try (Connection connection = PostresqlConnection.getConnection()) {
-			String sql="select id, body, make, model, year, color, mileage, vin from carlot.car where status = ?";
-			PreparedStatement preparedStatement=connection.prepareStatement(sql);
-			preparedStatement.setString(1, status);
-			ResultSet resultSet=preparedStatement.executeQuery();
-			while(resultSet.next()) {
-				Car car =new Car();
-				car.setId(resultSet.getInt("id"));
-				car.setBody(resultSet.getString("body"));
-				car.setMake(resultSet.getString("make"));
-				car.setModel(resultSet.getString("model"));
-				car.setYear(resultSet.getInt("year"));
-				car.setColor(resultSet.getString("color"));
-				car.setMileage(resultSet.getFloat("mileage"));
-				car.setVin(resultSet.getString("vin"));
-				carsList.add(car);
-			}
-			if(carsList.size()==0)
-			{
-				throw new BusinessException("No " + status +" cars found");
-			}
-		}catch (ClassNotFoundException | SQLException e) {
-
-			throw new BusinessException("Internal error occured contact admin ");
-		}
-		return carsList;
-	}
-
-
-
-	@Override
-	public Car getCarById(int id) throws BusinessException {
-		Car car = null;
-		try (Connection connection = PostresqlConnection.getConnection()) {
-			String sql="select body, make, model, year, color, mileage, vin , status from carlot.car where id = ?";
-			PreparedStatement preparedStatement=connection.prepareStatement(sql);
-			preparedStatement.setInt(1, id);
-			ResultSet resultSet=preparedStatement.executeQuery();
-			if (resultSet.next()) {
-				car = new Car();
-				car.setBody(resultSet.getString("body"));
-				car.setMake(resultSet.getString("make"));
-				car.setModel(resultSet.getString("model"));
-				car.setYear(resultSet.getInt("year"));
-				car.setColor(resultSet.getString("color"));
-				car.setMileage(resultSet.getFloat("mileage"));
-				car.setVin(resultSet.getString("vin"));
-				car.setStatus(resultSet.getString("status"));
-			}else {
-				throw new BusinessException("No car found with id "+id);
-			}
-		}catch (ClassNotFoundException | SQLException e) {
-
-			throw new BusinessException("Internal error occured contact admin ");
-		}
-		return car;
-	}
-
-	@Override
-	public int createCar(Car car) throws BusinessException {
+	public int createOffer(Offer offer) throws BusinessException {
 		int c = 0;
 		try (Connection connection=PostresqlConnection.getConnection()){
+			String sql = "insert into carlot.offer (offer_id, car_id, amount, status, customer_id, date) values( ?,?,?,?,?,?)";
 			
-			String sql="insert into carlot.car(id, body, make, model, year, color, mileage, vin , status) values(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement preparedStatement=connection.prepareStatement(sql);
-			preparedStatement.setInt(1, car.getId());
-			preparedStatement.setString(2, car.getBody());
-			preparedStatement.setString(3, car.getMake());
-			preparedStatement.setString(4, car.getModel());
-			preparedStatement.setInt(5, car.getYear());
-			preparedStatement.setString(6, car.getColor());
-			preparedStatement.setFloat(7, car.getMileage());
-			preparedStatement.setString(8, car.getVin());
-			preparedStatement.setString(9, car.getStatus());
-			
+
+			preparedStatement.setLong(1, offer.getOfferId());
+			preparedStatement.setInt(2, offer.getCarId());
+			preparedStatement.setDouble(3, offer.getAmount());
+			preparedStatement.setString(4, offer.getStatus());
+			preparedStatement.setInt(5, offer.getCustomerId());
+			preparedStatement.setDate(6, new java.sql.Date(offer.getDate().getTime()));
+
 			c = preparedStatement.executeUpdate();
 			
-		} catch (ClassNotFoundException | SQLException | NumberFormatException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			
 			
 			throw new BusinessException("Some internal error occured. Please contact admin");
 		}
 		return c;
 	}
-
-	@Override
-	public int deleteCar(int id) throws BusinessException {
-		int d = 0;
-		try (Connection connection = PostresqlConnection.getConnection()) {
-			String sql="delete from carlot.car where id = ?";
-			PreparedStatement preparedStatement=connection.prepareStatement(sql);
-			preparedStatement.setInt(1, id);
-			d = preparedStatement.executeUpdate();
-
-		}catch (ClassNotFoundException | SQLException e) {
-
-			throw new BusinessException("Internal error occured contact admin ");
-		}
-		return d;
-	}
-
-
 	@Override
 	public List<Offer> getOffersByStatus(String status) throws BusinessException {
 		List<Offer> offersList = new ArrayList<>();
@@ -247,5 +166,40 @@ public class LotDAOImpl implements LotDAO{
 		}
 		return offer;
 	}
+	
+	@Override
+	public int approveOffer(long offerId, int carId) throws BusinessException {
+		int xyz = 0;
+		try (Connection connection=PostresqlConnection.getConnection()){	
+
+		String sqlAccept="update carlot.offer set status='accepted' where offerId=?";
+		String sqlReject="update carlot.offer set status='rejected' where status='pending' and car_id=?";
+		String sqlCar="update carlot.car set status='sold' where id=?";
+		
+		PreparedStatement preparedStatementAccept=connection.prepareStatement(sqlAccept);
+		PreparedStatement preparedStatementReject=connection.prepareStatement(sqlReject);
+		PreparedStatement preparedStatementCar=connection.prepareStatement(sqlCar);
+		
+		connection.setAutoCommit(false); // !!!
+		
+		preparedStatementAccept.setLong(1, offerId);
+		int x = preparedStatementAccept.executeUpdate();
+		
+		preparedStatementReject.setInt(1, carId);
+		int y = preparedStatementReject.executeUpdate();
+		
+		preparedStatementCar.setInt(1, carId);
+		int z = preparedStatementCar.executeUpdate();
+		
+		connection.commit(); // !!!
+		
+		xyz = x+y+z;
+	} catch (ClassNotFoundException | SQLException e) {
+		
+		
+		throw new BusinessException("Some internal error occured. Please contact admin");
+		
+	}
+	return xyz;}
 
 }
