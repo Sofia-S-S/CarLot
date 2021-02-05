@@ -6,7 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager; // make sure to import from --.logging.-- for version two
+import org.apache.logging.log4j.Logger;
 
 import com.carlot.exception.BusinessException;
 import com.carlot.model.Car;
@@ -27,7 +28,7 @@ import com.carlot.service.impl.PaymentServiceImpl;
 
 public class Driver {
 
-	private static Logger log = Logger.getLogger(Driver.class); // Set up log
+	public static final Logger log = LogManager.getFormatterLogger(Driver.class); // v2 set up
 
 	public static void main(String[] args) throws BusinessException, ParseException {
 
@@ -92,7 +93,7 @@ public class Driver {
 								} catch (NumberFormatException e) {
 								}
 								switch (cMenu) {
-								// --1.1------------------------------------ Cars 
+								// --1.1------------------------------------ Cars
 								// -------------------------------------
 
 								case 1:
@@ -127,17 +128,16 @@ public class Driver {
 												log.info(e.getMessage());
 											}
 											break;
-											// --1.1.2------------------------------------ My cars and balance
-											// -------------------------------------
+										// --1.1.2------------------------------------ My cars and balance
+										// -------------------------------------
 										case 2:
 
-			
-
-										// --1.1.3------------------------------ Exit Cars
-										// -----------------------------------------
+											// --1.1.3------------------------------ Exit Cars
+											// -----------------------------------------
 											break;
 										default:
-											log.info("Invalid menu option.Please try again! DD113");
+											log.info("Invalid menu option.Please try again!");
+											log.debug("DD113");
 											break;
 										} // Switch
 									} while (cMenuCar != 3);
@@ -201,13 +201,14 @@ public class Driver {
 										// -----------------------------------------
 
 										default:
-											log.info("Invalid menu option.Please try again! DD123");
+											log.info("Invalid menu option.Please try again!");
+											log.debug("DD123");
 											break;
 										}
 									} while (cMenuOffer != 3);
 									break;
-									// --1.3------------------------------------ Payments
-									// -------------------------------------
+								// --1.3------------------------------------ Payments
+								// -------------------------------------
 								case 3:
 									int payMenu = 0;
 									do {
@@ -274,7 +275,8 @@ public class Driver {
 										// --1.3.3----------------------------------------- Exit
 										// Payments--------------------------------------------------------
 										default:
-											log.info("Invalid menu option.Please try again! DD133");
+											log.info("Invalid menu option.Please try again!");
+											log.debug("DD133");
 											break;
 										}
 									} while (payMenu != 3);
@@ -518,7 +520,8 @@ public class Driver {
 										// Cars--------------------------------
 
 										default:
-											log.info("Invalid menu option.Please try again! DD316");
+											log.info("Invalid menu option.Please try again!");
+											log.debug("DD316");
 											break;
 
 										}
@@ -618,13 +621,13 @@ public class Driver {
 
 													break;
 												default:
-													log.info("Invalid menu option.Please try again! DD 3213");
+													log.info("Invalid menu option.Please try again!");
+													log.debug("DD3213");
 													break;
 												}
 											} while (allOffers != 4);
 
 											break;
-										
 
 										// --3.2.2------------------------------------ Find an offer by ID
 										// -------------------------------------
@@ -658,7 +661,7 @@ public class Driver {
 															if (offerService.approveOffer(id, carId) != 0) {
 																log.info("Offer approved successfully");
 															}
-															oneOffer = 3 ;
+															oneOffer = 3;
 															break;
 														// --2.5.1------------------------------------ Reject
 														// -------------------------------------
@@ -667,12 +670,13 @@ public class Driver {
 															if (offerService.rejectOfferById(id) != 0) {
 																log.info("Offer rejected successfully");
 															}
-															oneOffer = 3 ;
+															oneOffer = 3;
 															break;
 
 														default:
 															log.info("Invalid menu option.Please try again DD251!");
-															
+															log.debug("DD251");
+
 														}
 
 													} while (oneOffer != 3);
@@ -686,14 +690,15 @@ public class Driver {
 										// --2.6------------------------------------ Exit Offers
 										// -------------------------------------
 										default:
-											log.info("Invalid menu option.Please try again! DD26");
+											log.info("Invalid menu option.Please try again!");
+											log.debug("DD26");
 											break;
 										}
 
 									} while (eMenuOffer != 3);
 									break;
-									// --3.6------------------------------------ Find a customer by id
-									// -------------------------------------
+								// --3.6------------------------------------ Find a customer by id
+								// -------------------------------------
 								case 3:
 
 									break;
@@ -754,7 +759,8 @@ public class Driver {
 										// --3.7.3---------------------------------Exit
 										// Payments---------------------------------------
 										default:
-											log.info("Invalid menu option.Please try again! DD373");
+											log.info("Invalid menu option.Please try again!");
+											log.debug("DD373");
 											break;
 										} // Switch
 									} while (ePay != 3);
@@ -763,7 +769,8 @@ public class Driver {
 								// --8-------------------------Employee menu exit (log out)
 								// -------------------------------------------
 								default:
-									log.info("Invalid menu option.Please try again! DD8");
+									log.info("Invalid menu option.Please try again!");
+									log.debug("DD8");
 									break;
 								} // Switch
 							} while (eMenu != 5);
@@ -771,19 +778,18 @@ public class Driver {
 						}
 					} catch (BusinessException e) {
 						log.info(e.getMessage());
-						
+
 					}
 					break;
 				} while (eLog != 1); // employee login
 				break;
 //-----------------------------------------End of main menu ----------------------------------------------------
 			default:
-				log.info("Invalid menu option.Please try again! DDEnd");
-
+				log.info("Invalid menu option.Please try again! ");
+				log.debug("DDEnd");
 
 			} // switch ch
 		} while (ch != 4); // main menu do
-	
 
 		sc.close(); // avoiding resource leak
 	} // main

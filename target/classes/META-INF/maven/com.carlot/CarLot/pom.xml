@@ -22,11 +22,20 @@
 	</dependency>
 	
 	<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-	<dependency>
+	<!--  <dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
 		<version>1.2.17</version>
-	</dependency>
+	</dependency>-->
+	
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.14.0</version>
+		</dependency>
+
+	
 	
 	<!-- Fixing Class path contains multiple SLF4J bindings ERROR -->
 	<dependency>
