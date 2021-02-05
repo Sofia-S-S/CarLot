@@ -58,10 +58,10 @@ public class OfferServiceImpl implements OfferService {
 	}
 
 	@Override
-	public int updateOfferStatusForReject(long offerId) throws BusinessException {
+	public int rejectOfferById(long offerId) throws BusinessException {
 		int x= 0;
 		if(offerId>100000L) {
-			x = dao.updateOfferStatusForReject(offerId);
+			x = dao.rejectOfferById(offerId);
 		} else {
 			throw new BusinessException("Offer id " + offerId + " is INVALID......");
 		}
@@ -83,9 +83,12 @@ public class OfferServiceImpl implements OfferService {
 		int a = 0;
 		if ((offerId > 100000L)&& carId>0) {
 			a = dao.approveOffer(offerId, carId);
+			dao.rejectOfferByCarId(carId);
+			
 		} else {
 			throw new BusinessException("Offer id " + offerId + " is INVALID......");
 		}
+	
 		return a;
 	}
 }

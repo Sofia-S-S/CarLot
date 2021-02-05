@@ -124,7 +124,7 @@ public class OfferDAOImpl implements OfferDAO {
 	}
 
 	@Override
-	public int updateOfferStatusForReject(long offerId) throws BusinessException {
+	public int rejectOfferById (long offerId) throws BusinessException {
 		int up = 0;
 		try (Connection connection = PostresqlConnection.getConnection()) {
 			String sql="update carlot.offer set status='rejected' where offer_id = ?";
@@ -138,7 +138,24 @@ public class OfferDAOImpl implements OfferDAO {
 		}
 		return up;
 	}
+	
+	@Override
+	public int rejectOfferByCarId(int carId) throws BusinessException {
+		int up = 0;
+		try (Connection connection = PostresqlConnection.getConnection()) {
+			String sql="update carlot.offer set status='rejected' where status='pending' and car_id = ?";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setLong(1, carId);
+			up = preparedStatement.executeUpdate();
 
+		}catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+
+			throw new BusinessException("Internal error occured contact admin ");
+
+		}
+		return up;
+	}
 
 
 	@Override
@@ -169,15 +186,13 @@ public class OfferDAOImpl implements OfferDAO {
 	
 	@Override
 	public int approveOffer(long offerId, int carId) throws BusinessException {
-		int xyz = 0;
+		int xy = 0;
 		try (Connection connection=PostresqlConnection.getConnection()){	
 
-		String sqlAccept="update carlot.offer set status='accepted' where offerId=?";
-		String sqlReject="update carlot.offer set status='rejected' where status='pending' and car_id=?";
+		String sqlAccept="update carlot.offer set status='accepted' where offer_id=?";
 		String sqlCar="update carlot.car set status='sold' where id=?";
 		
 		PreparedStatement preparedStatementAccept=connection.prepareStatement(sqlAccept);
-		PreparedStatement preparedStatementReject=connection.prepareStatement(sqlReject);
 		PreparedStatement preparedStatementCar=connection.prepareStatement(sqlCar);
 		
 		connection.setAutoCommit(false); // !!!
@@ -185,21 +200,19 @@ public class OfferDAOImpl implements OfferDAO {
 		preparedStatementAccept.setLong(1, offerId);
 		int x = preparedStatementAccept.executeUpdate();
 		
-		preparedStatementReject.setInt(1, carId);
-		int y = preparedStatementReject.executeUpdate();
-		
 		preparedStatementCar.setInt(1, carId);
-		int z = preparedStatementCar.executeUpdate();
+		int y = preparedStatementCar.executeUpdate();
 		
 		connection.commit(); // !!!
 		
-		xyz = x+y+z;
+		xy = x+y;
 	} catch (ClassNotFoundException | SQLException e) {
-		
+		e.printStackTrace();
 		
 		throw new BusinessException("Some internal error occured. Please contact admin");
 		
+		
 	}
-	return xyz;}
+	return xy;}
 
 }

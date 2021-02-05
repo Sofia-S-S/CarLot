@@ -11,7 +11,7 @@ public interface OfferService {
 	List<Offer> getOffersByStatus (String status) throws BusinessException;
 	List<Offer> getOffersByCarId (int carId) throws BusinessException;
 	List<Offer> getOffersByCustomerId(int customerId) throws BusinessException;
-	int updateOfferStatusForReject (long offerId)  throws BusinessException;
+	int rejectOfferById (long offerId)  throws BusinessException;
 	int approveOffer (long offerId, int carId)  throws BusinessException;
 	Offer getOfferById (long offerId) throws BusinessException;
 
