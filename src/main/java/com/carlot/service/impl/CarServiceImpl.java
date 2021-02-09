@@ -83,6 +83,12 @@ public class CarServiceImpl implements CarService{
 		return d;
 	}
 
+	@Override
+	public List<Car> getCarsByCustomer(int customerId) throws BusinessException {
+		List<Car> carsList = dao.getCarsByCustomer(customerId);
+		return carsList;
+	}
+
 	
 
 }

@@ -90,8 +90,8 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob + ", dl="
-				+ dl + ", ssn=" + ssn + ", contact=" + contact + ", address=" + address + "]";
+		return "id : " + id + " | firstName : " + firstName + " | lastName | " + lastName + " | dob : " + dob + " | dl : "
+				+ dl + " | ssn : " + ssn + " | contact : " + contact + " | address : " + address;
 	}
 
 	

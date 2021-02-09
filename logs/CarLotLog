@@ -1,1 +1,310 @@
-
+INFO     08-02-2021  CST  18:18:23     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:18:23     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:18:23     com.carlot.Driver                  [main]   	    WELCOME TO CAR LOT
+INFO     08-02-2021  CST  18:18:23     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:18:23     com.carlot.Driver                  [main]   	  (1) Log in to my account
+INFO     08-02-2021  CST  18:18:23     com.carlot.Driver                  [main]   	  (2) New Customer
+INFO     08-02-2021  CST  18:18:23     com.carlot.Driver                  [main]   	  (3) Employee log in
+INFO     08-02-2021  CST  18:18:23     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:18:31     com.carlot.Driver                  [main]   	Enter your EMPLOYEE ID
+INFO     08-02-2021  CST  18:18:37     com.carlot.Driver                  [main]   	Enter your PASSWORD
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	 EMPLOYEE MENU FOR Matthew Matson
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	  (1) Cars
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	  (2) Offers
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	  (3) View customers
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	  (4) View Payments
+INFO     08-02-2021  CST  18:18:40     com.carlot.Driver                  [main]   	  (5) Log out
+INFO     08-02-2021  CST  18:18:45     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:18:45     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:18:45     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:18:45     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:18:45     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:18:45     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:18:45     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:18:50     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:18:50     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:18:50     com.carlot.Driver                  [main]   	    ALL OFFERS
+INFO     08-02-2021  CST  18:18:50     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:18:50     com.carlot.Driver                  [main]   	  (1) All Pending Offers
+INFO     08-02-2021  CST  18:18:50     com.carlot.Driver                  [main]   	  (2) All Rejected Offers
+INFO     08-02-2021  CST  18:18:50     com.carlot.Driver                  [main]   	  (3) Offers for specific car
+INFO     08-02-2021  CST  18:18:50     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	All pending offers
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	offer id : 199999 | car id : 100 | amount : 3000.0 | status : null | customer id : 12 | date 2021-02-02
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	    ALL OFFERS
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	  (1) All Pending Offers
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	  (2) All Rejected Offers
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	  (3) Offers for specific car
+INFO     08-02-2021  CST  18:18:57     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:19:17     com.carlot.Driver                  [main]   	Enter a Car ID
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	No offers found for a car with id 199999
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	    ALL OFFERS
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	  (1) All Pending Offers
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	  (2) All Rejected Offers
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	  (3) Offers for specific car
+INFO     08-02-2021  CST  18:19:19     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:19:28     com.carlot.Driver                  [main]   	Enter a Car ID
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	All offers for car with  id 100
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	offer id : 199999 | car id : 0 | amount : 3000.0 | status : pending | customer id : 12 | date 2021-02-02
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	offer id : 200000 | car id : 0 | amount : 7000.0 | status : accepted | customer id : 11 | date 2021-02-03
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	    ALL OFFERS
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	  (1) All Pending Offers
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	  (2) All Rejected Offers
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	  (3) Offers for specific car
+INFO     08-02-2021  CST  18:19:33     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	Invalid menu option.Please try again!
+DEBUG    08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	DD3213
+INFO     08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:20:21     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:20:27     com.carlot.Driver                  [main]   	Enter an Offer ID
+INFO     08-02-2021  CST  18:20:31     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:20:31     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:20:31     com.carlot.Driver                  [main]   	 offer id : 0 | car id : 100 | amount : 7000.0 | status : accepted | customer id : 11 | date 2021-02-03
+INFO     08-02-2021  CST  18:20:31     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:20:31     com.carlot.Driver                  [main]   	  (1) Approve
+INFO     08-02-2021  CST  18:20:31     com.carlot.Driver                  [main]   	  (2) Reject
+INFO     08-02-2021  CST  18:20:31     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:20:43     com.carlot.Driver                  [main]   	Offer approved successfully
+INFO     08-02-2021  CST  18:20:43     com.carlot.Driver                  [main]   	Enter customer Credit Score
+INFO     08-02-2021  CST  18:21:06     com.carlot.Driver                  [main]   	Enter term in years
+INFO     08-02-2021  CST  18:21:09     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:21:09     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:21:09     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:21:09     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:21:09     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:21:09     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:21:09     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:37:48     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:37:48     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:37:48     com.carlot.Driver                  [main]   	    WELCOME TO CAR LOT
+INFO     08-02-2021  CST  18:37:48     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:37:48     com.carlot.Driver                  [main]   	  (1) Log in to my account
+INFO     08-02-2021  CST  18:37:48     com.carlot.Driver                  [main]   	  (2) New Customer
+INFO     08-02-2021  CST  18:37:48     com.carlot.Driver                  [main]   	  (3) Employee log in
+INFO     08-02-2021  CST  18:37:48     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:37:54     com.carlot.Driver                  [main]   	Enter your EMPLOYEE ID
+INFO     08-02-2021  CST  18:37:58     com.carlot.Driver                  [main]   	Enter your PASSWORD
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	 EMPLOYEE MENU FOR Matthew Matson
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	  (1) Cars
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	  (2) Offers
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	  (3) View customers
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	  (4) View Payments
+INFO     08-02-2021  CST  18:38:02     com.carlot.Driver                  [main]   	  (5) Log out
+INFO     08-02-2021  CST  18:38:08     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:38:08     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:38:08     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:38:08     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:38:08     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:38:08     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:38:08     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:38:12     com.carlot.Driver                  [main]   	Enter an Offer ID
+INFO     08-02-2021  CST  18:38:21     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:38:21     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:38:21     com.carlot.Driver                  [main]   	 offer id : 0 | car id : 100 | amount : 7000.0 | status : accepted | customer id : 11 | date 2021-02-03
+INFO     08-02-2021  CST  18:38:21     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:38:21     com.carlot.Driver                  [main]   	  (1) Approve
+INFO     08-02-2021  CST  18:38:21     com.carlot.Driver                  [main]   	  (2) Reject
+INFO     08-02-2021  CST  18:38:21     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:38:27     com.carlot.Driver                  [main]   	Offer approved successfully
+INFO     08-02-2021  CST  18:38:27     com.carlot.Driver                  [main]   	Enter customer Credit Score
+INFO     08-02-2021  CST  18:38:37     com.carlot.Driver                  [main]   	Enter term in years
+DEBUG    08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	interest = 38360.000133514404
+DEBUG    08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	monthly = 945.00000278155
+INFO     08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	Some internal error occured. Please contact admin
+INFO     08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:38:41     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:41:59     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:41:59     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:41:59     com.carlot.Driver                  [main]   	    WELCOME TO CAR LOT
+INFO     08-02-2021  CST  18:41:59     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:41:59     com.carlot.Driver                  [main]   	  (1) Log in to my account
+INFO     08-02-2021  CST  18:41:59     com.carlot.Driver                  [main]   	  (2) New Customer
+INFO     08-02-2021  CST  18:41:59     com.carlot.Driver                  [main]   	  (3) Employee log in
+INFO     08-02-2021  CST  18:41:59     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:42:33     com.carlot.Driver                  [main]   	Enter your EMPLOYEE ID
+INFO     08-02-2021  CST  18:42:39     com.carlot.Driver                  [main]   	Enter your PASSWORD
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	 EMPLOYEE MENU FOR Matthew Matson
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	  (1) Cars
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	  (2) Offers
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	  (3) View customers
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	  (4) View Payments
+INFO     08-02-2021  CST  18:42:45     com.carlot.Driver                  [main]   	  (5) Log out
+INFO     08-02-2021  CST  18:42:56     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:42:56     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:42:56     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:42:56     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:42:56     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:42:56     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:42:56     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:42:59     com.carlot.Driver                  [main]   	Enter an Offer ID
+INFO     08-02-2021  CST  18:43:03     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:43:03     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:43:03     com.carlot.Driver                  [main]   	 offer id : 0 | car id : 100 | amount : 7000.0 | status : accepted | customer id : 11 | date 2021-02-03
+INFO     08-02-2021  CST  18:43:03     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:43:03     com.carlot.Driver                  [main]   	  (1) Approve
+INFO     08-02-2021  CST  18:43:03     com.carlot.Driver                  [main]   	  (2) Reject
+INFO     08-02-2021  CST  18:43:03     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:43:07     com.carlot.Driver                  [main]   	Offer approved successfully
+INFO     08-02-2021  CST  18:43:07     com.carlot.Driver                  [main]   	Enter customer Credit Score
+INFO     08-02-2021  CST  18:43:15     com.carlot.Driver                  [main]   	Enter term in years
+DEBUG    08-02-2021  CST  18:43:17     com.carlot.service.impl.LoanServiceImpl[main]   	interest = 38360.000133514404
+DEBUG    08-02-2021  CST  18:43:17     com.carlot.service.impl.LoanServiceImpl[main]   	monthly = 945.00000278155
+DEBUG    08-02-2021  CST  18:43:17     com.carlot.dao.impl.LoanDAOImpl    [main]   	org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "loan_car_id_key"
+  Detail: Key (car_id)=(100) already exists.
+INFO     08-02-2021  CST  18:43:17     com.carlot.Driver                  [main]   	Some internal error occured. Please contact admin
+INFO     08-02-2021  CST  18:43:17     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:43:17     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:43:17     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:43:17     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:43:17     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:43:17     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:43:17     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:50:22     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:50:22     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:50:22     com.carlot.Driver                  [main]   	    WELCOME TO CAR LOT
+INFO     08-02-2021  CST  18:50:22     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:50:22     com.carlot.Driver                  [main]   	  (1) Log in to my account
+INFO     08-02-2021  CST  18:50:22     com.carlot.Driver                  [main]   	  (2) New Customer
+INFO     08-02-2021  CST  18:50:22     com.carlot.Driver                  [main]   	  (3) Employee log in
+INFO     08-02-2021  CST  18:50:22     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:50:29     com.carlot.Driver                  [main]   	Enter your EMPLOYEE ID
+INFO     08-02-2021  CST  18:50:32     com.carlot.Driver                  [main]   	Enter your PASSWORD
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	 EMPLOYEE MENU FOR Matthew Matson
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	  (1) Cars
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	  (2) Offers
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	  (3) View customers
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	  (4) View Payments
+INFO     08-02-2021  CST  18:50:35     com.carlot.Driver                  [main]   	  (5) Log out
+INFO     08-02-2021  CST  18:50:39     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:50:39     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:50:39     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:50:39     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:50:39     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:50:39     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:50:39     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:50:44     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:50:44     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:50:44     com.carlot.Driver                  [main]   	    ALL OFFERS
+INFO     08-02-2021  CST  18:50:44     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:50:44     com.carlot.Driver                  [main]   	  (1) All Pending Offers
+INFO     08-02-2021  CST  18:50:44     com.carlot.Driver                  [main]   	  (2) All Rejected Offers
+INFO     08-02-2021  CST  18:50:44     com.carlot.Driver                  [main]   	  (3) Offers for specific car
+INFO     08-02-2021  CST  18:50:44     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	All pending offers
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	offer id : 200000 | car id : 100 | amount : 7000.0 | status : null | customer id : 11 | date 2021-02-03
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	    ALL OFFERS
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	  (1) All Pending Offers
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	  (2) All Rejected Offers
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	  (3) Offers for specific car
+INFO     08-02-2021  CST  18:50:48     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	Invalid menu option.Please try again!
+DEBUG    08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	DD3213
+INFO     08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:51:12     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:51:16     com.carlot.Driver                  [main]   	Enter an Offer ID
+INFO     08-02-2021  CST  18:51:19     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:51:19     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:51:19     com.carlot.Driver                  [main]   	 offer id : 0 | car id : 100 | amount : 7000.0 | status : pending | customer id : 11 | date 2021-02-03
+INFO     08-02-2021  CST  18:51:19     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:51:19     com.carlot.Driver                  [main]   	  (1) Approve
+INFO     08-02-2021  CST  18:51:19     com.carlot.Driver                  [main]   	  (2) Reject
+INFO     08-02-2021  CST  18:51:19     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:51:23     com.carlot.Driver                  [main]   	Offer approved successfully
+INFO     08-02-2021  CST  18:51:23     com.carlot.Driver                  [main]   	Enter customer Credit Score
+INFO     08-02-2021  CST  18:51:35     com.carlot.Driver                  [main]   	Enter term in years
+DEBUG    08-02-2021  CST  18:51:39     com.carlot.service.impl.LoanServiceImpl[main]   	interest = 1138.900032043457
+DEBUG    08-02-2021  CST  18:51:39     com.carlot.service.impl.LoanServiceImpl[main]   	monthly = 169.56041733423868
+INFO     08-02-2021  CST  18:51:40     com.carlot.Driver                  [main]   	loan created succsessfully
+INFO     08-02-2021  CST  18:51:40     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:51:40     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:51:40     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:51:40     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:51:40     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:51:40     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:51:40     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:56:31     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:56:31     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:56:31     com.carlot.Driver                  [main]   	    WELCOME TO CAR LOT
+INFO     08-02-2021  CST  18:56:31     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:56:31     com.carlot.Driver                  [main]   	  (1) Log in to my account
+INFO     08-02-2021  CST  18:56:31     com.carlot.Driver                  [main]   	  (2) New Customer
+INFO     08-02-2021  CST  18:56:31     com.carlot.Driver                  [main]   	  (3) Employee log in
+INFO     08-02-2021  CST  18:56:31     com.carlot.Driver                  [main]   	  (4) Exit
+INFO     08-02-2021  CST  18:56:34     com.carlot.Driver                  [main]   	Enter your EMPLOYEE ID
+INFO     08-02-2021  CST  18:56:37     com.carlot.Driver                  [main]   	Enter your PASSWORD
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	 EMPLOYEE MENU FOR Matthew Matson
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	===================================
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	  (1) Cars
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	  (2) Offers
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	  (3) View customers
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	  (4) View Payments
+INFO     08-02-2021  CST  18:56:41     com.carlot.Driver                  [main]   	  (5) Log out
+INFO     08-02-2021  CST  18:56:45     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:56:45     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:56:45     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:56:45     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:56:45     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:56:45     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:56:45     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:56:49     com.carlot.Driver                  [main]   	Enter an Offer ID
+INFO     08-02-2021  CST  18:56:52     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:56:52     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:56:52     com.carlot.Driver                  [main]   	 offer id : 0 | car id : 100 | amount : 7000.0 | status : accepted | customer id : 11 | date 2021-02-03
+INFO     08-02-2021  CST  18:56:52     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:56:52     com.carlot.Driver                  [main]   	  (1) Approve
+INFO     08-02-2021  CST  18:56:52     com.carlot.Driver                  [main]   	  (2) Reject
+INFO     08-02-2021  CST  18:56:52     com.carlot.Driver                  [main]   	  (3) Exit
+INFO     08-02-2021  CST  18:57:03     com.carlot.Driver                  [main]   	Offer approved successfully
+INFO     08-02-2021  CST  18:57:03     com.carlot.Driver                  [main]   	Enter customer Credit Score
+INFO     08-02-2021  CST  18:57:08     com.carlot.Driver                  [main]   	Enter term in years
+DEBUG    08-02-2021  CST  18:57:11     com.carlot.service.impl.LoanServiceImpl[main]   	interest = 1138.9
+DEBUG    08-02-2021  CST  18:57:11     com.carlot.service.impl.LoanServiceImpl[main]   	monthly = 169.56041666666667
+INFO     08-02-2021  CST  18:57:11     com.carlot.Driver                  [main]   	loan created succsessfully
+INFO     08-02-2021  CST  18:57:11     com.carlot.Driver                  [main]   	
+INFO     08-02-2021  CST  18:57:11     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:57:11     com.carlot.Driver                  [main]   	    OFFERS
+INFO     08-02-2021  CST  18:57:11     com.carlot.Driver                  [main]   	==============================
+INFO     08-02-2021  CST  18:57:11     com.carlot.Driver                  [main]   	  (1) All Offers
+INFO     08-02-2021  CST  18:57:11     com.carlot.Driver                  [main]   	  (2) Find an Offer
+INFO     08-02-2021  CST  18:57:11     com.carlot.Driver                  [main]   	  (3) Exit

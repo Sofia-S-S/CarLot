@@ -59,7 +59,7 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [paymentId=" + paymentId + ", carId=" + carId + ", amount=" + amount + ", date=" + date + "]";
+		return "payment id : " + paymentId + " | car id : " + carId + " | amount : " + amount + " | date | " + date;
 	}
 
 

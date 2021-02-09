@@ -8,11 +8,12 @@ import com.carlot.model.Car;
 
 public interface CarService {
 
-	public List<Car> getCarsByStatus (String status) throws BusinessException;
+	List<Car> getCarsByStatus (String status) throws BusinessException;
+	List<Car> getCarsByCustomer(int customerId) throws BusinessException;
 
-	public Car getCarById (int id) throws BusinessException;
+	Car getCarById (int id) throws BusinessException;
 	
-	public int createCar (Car car) throws BusinessException;
-	public int deleteCar(int id) throws BusinessException;
+	int createCar (Car car) throws BusinessException;
+	int deleteCar(int id) throws BusinessException;
 
 }

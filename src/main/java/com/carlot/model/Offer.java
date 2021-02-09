@@ -69,8 +69,8 @@ public class Offer {
 	}
 	@Override
 	public String toString() {
-		return "Offer [offerId=" + offerId + ", carId=" + carId + ", amount=" + amount + ", status=" + status
-				+ ", customerId=" + customerId + ", date=" + date + "]";
+		return "offer id : " + offerId + " | car id : " + carId + " | amount : " + amount + " | status : " + status
+				+ " | customer id : " + customerId + " | date " + date;
 	}
 
 }

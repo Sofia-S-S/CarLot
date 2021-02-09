@@ -7,12 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.carlot.dao.CarDAO;
 import com.carlot.dbutil.PostresqlConnection;
 import com.carlot.exception.BusinessException;
 import com.carlot.model.Car;
 
 public class CarDAOImpl implements CarDAO{
+	
+	public static final Logger log = LogManager.getFormatterLogger(CarDAOImpl.class); // v2 set up
 
 	@Override
 	public List<Car> getCarsByStatus(String status) throws BusinessException {
@@ -116,6 +121,42 @@ public class CarDAOImpl implements CarDAO{
 			throw new BusinessException("Internal error occured contact admin ");
 		}
 		return d;
+	}
+
+
+
+	@Override
+	public List<Car> getCarsByCustomer(int customerId) throws BusinessException {
+		List<Car> carsList = new ArrayList<>();
+		try (Connection connection = PostresqlConnection.getConnection()) {
+			String sql="select car.id, body, make, model, year, color, mileage, vin from carlot.car "
+					+ "inner join carlot.offer on carlot.car.id = carlot.offer.car_id "
+					+ "where offer.customer_id=? and offer.status='accepted'";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, customerId);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Car car =new Car();
+				car.setId(resultSet.getInt("id"));
+				car.setBody(resultSet.getString("body"));
+				car.setMake(resultSet.getString("make"));
+				car.setModel(resultSet.getString("model"));
+				car.setYear(resultSet.getInt("year"));
+				car.setColor(resultSet.getString("color"));
+				car.setMileage(resultSet.getFloat("mileage"));
+				car.setVin(resultSet.getString("vin"));
+				carsList.add(car);
+			}
+			if(carsList.size()==0)
+			{
+				throw new BusinessException("You do not have any cars");
+			}
+		}catch (ClassNotFoundException | SQLException e) {
+			log.debug(e);
+
+			throw new BusinessException("Internal error occured contact admin ");
+		}
+		return carsList;
 	}
 
 

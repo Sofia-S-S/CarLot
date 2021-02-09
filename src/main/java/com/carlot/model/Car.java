@@ -136,8 +136,8 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", body=" + body + ", make=" + make + ", model=" + model + ", year=" + year
-				+ ", color=" + color + ", mileage=" + mileage + ", vin=" + vin + ", status=" + status + "]";
+		return "id : " + id + " | body : " + body + " | make : " + make + " | model : " + model + " | year : " + year
+				+ " | color : " + color + " | mileage : " + mileage + " | vin : " + vin ;
 	}
 	
 	

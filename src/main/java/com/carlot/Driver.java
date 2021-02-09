@@ -1,7 +1,7 @@
 package com.carlot;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -17,11 +17,13 @@ import com.carlot.model.EmployeeLogin;
 import com.carlot.model.Offer;
 import com.carlot.model.Payment;
 import com.carlot.service.CarService;
+import com.carlot.service.LoanService;
 import com.carlot.service.LoginService;
 import com.carlot.service.OfferService;
 import com.carlot.service.PaymentService;
-import com.carlot.service.impl.AgeCulculator;
+import com.carlot.service.help.DayOfBirth;
 import com.carlot.service.impl.CarServiceImpl;
+import com.carlot.service.impl.LoanServiceImpl;
 import com.carlot.service.impl.LoginServiceImpl;
 import com.carlot.service.impl.OfferServiceImpl;
 import com.carlot.service.impl.PaymentServiceImpl;
@@ -37,10 +39,10 @@ public class Driver {
 		int ch = 0;
 
 		LoginService loginService = new LoginServiceImpl();
+		LoanService loanService = new LoanServiceImpl();
 		CarService carService = new CarServiceImpl();
 		OfferService offerService = new OfferServiceImpl();
 		PaymentService payService = new PaymentServiceImpl();
-		AgeCulculator ag = new AgeCulculator();
 
 		do {
 
@@ -131,7 +133,18 @@ public class Driver {
 										// --1.1.2------------------------------------ My cars and balance
 										// -------------------------------------
 										case 2:
-
+											try {
+												List<Car> cars = carService.getCarsByCustomer(customerId);
+												if (cars != null) {
+													log.info("Your Cars:");
+													log.info("------------------------");
+													for (Car c : cars) {
+														log.info(c);
+													}
+												}
+											} catch (BusinessException e) {
+												log.info(e.getMessage());
+											}
 											// --1.1.3------------------------------ Exit Cars
 											// -----------------------------------------
 											break;
@@ -290,7 +303,7 @@ public class Driver {
 							break;
 						} // if (c !=null)
 					} catch (BusinessException e) {
-						log.info(e.getMessage());
+						log.debug(e.getMessage());
 					}
 					break;
 				} while (cLog != 1); // customer login
@@ -302,25 +315,16 @@ public class Driver {
 				int x = 0;
 				do {
 					try {
+						//Validate age and parse to Date format
+						log.info("Enter your DOB in format yyyy-dd-mm");
+						String s = sc.nextLine();
+						Date dob = DayOfBirth.validateAge(s, LocalDate.now());
+						log.debug("Date = " + dob);
+						
 						log.info("Enter your FIRST NAME");
 						String firstName = sc.nextLine();
 						log.info("Enter your LAST NAME");
 						String lastName = sc.nextLine();
-
-						// Date formatting
-						log.info("Enter your DOB in format yyyy-dd-mm");
-						String s = sc.nextLine();
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-MM");
-						sdf.setLenient(false);
-						Date dob = null;
-						try {
-							dob = sdf.parse(s);
-						} catch (ParseException e1) {
-							log.info("Invalid date format");
-							break;
-						}
-						// Validate age
-
 						log.info("Enter your DL");
 						String dl = sc.nextLine();
 						log.info("Enter your SSN (9 digits without space)");
@@ -660,7 +664,23 @@ public class Driver {
 
 															if (offerService.approveOffer(id, carId) != 0) {
 																log.info("Offer approved successfully");
-															}
+																try {
+																	log.info("Enter customer Credit Score");
+																	int creditScore = Integer.parseInt(sc.nextLine());
+																	Double amount = offer.getAmount();
+																	log.info("Enter term in years");
+																	int term = Integer.parseInt(sc.nextLine());
+															
+																
+																	if (loanService.calculateLoan(carId, amount, term, creditScore) > 0) {
+																		log.info("loan created succsessfully");
+																	}
+																	
+																} catch (NumberFormatException e) {
+																} catch (BusinessException e) {
+																	log.info(e.getMessage());
+																}
+																}
 															oneOffer = 3;
 															break;
 														// --2.5.1------------------------------------ Reject
@@ -793,5 +813,7 @@ public class Driver {
 
 		sc.close(); // avoiding resource leak
 	} // main
+
+
 
 } // Driver
