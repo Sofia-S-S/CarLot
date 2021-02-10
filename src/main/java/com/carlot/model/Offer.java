@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Offer {
 	
+
 	private long offerId;
 	private int carId;
 	private double amount;
@@ -66,6 +67,49 @@ public class Offer {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(amount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + carId;
+		result = prime * result + customerId;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + (int) (offerId ^ (offerId >>> 32));
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Offer other = (Offer) obj;
+		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
+			return false;
+		if (carId != other.carId)
+			return false;
+		if (customerId != other.customerId)
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (offerId != other.offerId)
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		return true;
 	}
 	@Override
 	public String toString() {

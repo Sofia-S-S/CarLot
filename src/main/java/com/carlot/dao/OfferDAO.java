@@ -8,9 +8,12 @@ import com.carlot.model.Offer;
 public interface OfferDAO {
 	
 	public int createOffer (Offer offer)throws BusinessException;
-	public List<Offer> getOffersByStatus (String status) throws BusinessException;
-	public List<Offer> getOffersByCarId (int carId) throws BusinessException;
-	public List<Offer> getOffersByCustomerId(int customerId) throws BusinessException;
+//	public List<Offer> getOffersByStatus (String status) throws BusinessException;
+//	public List<Offer> getOffersByCarId (int carId) throws BusinessException;
+//	public List<Offer> getOffersByCustomerId(int customerId) throws BusinessException;
+	
+	public List<Offer> getAllOffers() throws BusinessException;
+	
 	public int rejectOfferById (long offerId)  throws BusinessException;
 	public int rejectOfferByCarId (int carId)  throws BusinessException;
 	public int approveOffer (long offerId, int carId)  throws BusinessException;

@@ -6,7 +6,7 @@ CREATE TABLE carlot.employee_login (
 );
 
 CREATE TABLE carlot.customer (
-	id int UNIQUE NOT NULL,
+	id SERIAL UNIQUE NOT NULL,
 	first_name varchar(30) NOT NULL,
 	last_name varchar(30) NOT NULL,
 	dob date NOT NULL,
@@ -16,16 +16,18 @@ CREATE TABLE carlot.customer (
 	address varchar(60) NULL,
 	PRIMARY KEY (id)
 );
+ALTER sequence carlot.customer_id_seq RESTART WITH 11 INCREMENT BY 1;
 
 CREATE TABLE carlot.customer_login (
-	customer_id int UNIQUE NOT NULL,
+	customer_id SERIAL UNIQUE NOT NULL,
 	login varchar(12) NOT NULL,
 	password varchar(12) NOT NULL,
 	CONSTRAINT customer_login_fk FOREIGN KEY (customer_id) REFERENCES carlot.customer(id)
 );
+ALTER sequence carlot.customer_login_customer_id_seq RESTART WITH 11 INCREMENT BY 1;
 
 CREATE TABLE carlot.car (
-	id int UNIQUE NOT NULL,
+	id SERIAL UNIQUE NOT NULL,
 	body varchar(30) NULL,
 	make varchar(30) NOT NULL,
 	model varchar(30) NOT NULL,
@@ -34,11 +36,13 @@ CREATE TABLE carlot.car (
 	mileage int8 NULL,
 	vin varchar(17) UNIQUE NOT NULL,
 	status varchar(10) NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	CONSTRAINT car_owner_id_fk FOREIGN KEY (owner_id) REFERENCES carlot.customer(id)
 );
+ALTER sequence carlot.car_id_seq RESTART WITH 101 INCREMENT BY 1;
 
 CREATE TABLE carlot.offer (
-	offer_id int8 UNIQUE NOT NULL,
+	offer_id bigserial UNIQUE NOT NULL,
 	car_id int NOT NULL,
 	amount double precision NOT NULL,
 	status varchar(12) NOT NULL,
@@ -48,23 +52,28 @@ CREATE TABLE carlot.offer (
 	CONSTRAINT offer_carfk FOREIGN KEY (car_id) REFERENCES carlot.car(id),
 	CONSTRAINT offer_custfk FOREIGN KEY (customer_id) REFERENCES carlot.customer(id)
 );
-
+ALTER sequence carlot.offer_offer_id_seq RESTART WITH 10000 INCREMENT BY 1;
 
 CREATE TABLE carlot.loan (
-	car_id int UNIQUE NOT NULL,
+	car_id int8 UNIQUE NOT NULL,
 	amount double precision NOT NULL,
-	sale_date date NULL,
-	lengths int NOT NULL,
+	rate float NOT NULL,
+	term int NOT NULL,
+	interest double precision NOT NULL, 
 	monthly_payment double precision NOT NULL,
 	remaining_balance double precision NOT NULL,
+	sale_date date NULL,
 	CONSTRAINT loan_fk FOREIGN KEY (car_id) REFERENCES carlot.car(id)	
 );
 
+
 CREATE TABLE carlot.payment (
-	payment_id int8 UNIQUE NOT NULL,
+	payment_id bigserial UNIQUE NOT NULL,
 	car_id int NOT NULL,
 	amount double precision NOT NULL,
 	date date NULL,
 
 	CONSTRAINT payment_fk FOREIGN KEY (car_id) REFERENCES carlot.car(id)	
 );
+ALTER sequence carlot.payment_payment_id_seq RESTART WITH 100000 INCREMENT BY 1;
+

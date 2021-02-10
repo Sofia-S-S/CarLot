@@ -14,6 +14,7 @@ import com.carlot.model.Car;
 import com.carlot.model.Customer;
 import com.carlot.model.CustomerLogin;
 import com.carlot.model.EmployeeLogin;
+import com.carlot.model.Loan;
 import com.carlot.model.Offer;
 import com.carlot.model.Payment;
 import com.carlot.service.CarService;
@@ -21,8 +22,8 @@ import com.carlot.service.LoanService;
 import com.carlot.service.LoginService;
 import com.carlot.service.OfferService;
 import com.carlot.service.PaymentService;
-import com.carlot.service.help.DayOfBirth;
 import com.carlot.service.impl.CarServiceImpl;
+import com.carlot.service.impl.DayOfBirth;
 import com.carlot.service.impl.LoanServiceImpl;
 import com.carlot.service.impl.LoginServiceImpl;
 import com.carlot.service.impl.OfferServiceImpl;
@@ -65,8 +66,8 @@ public class Driver {
 //--1------------------------------------Customer Log In -------------------------------------
 			case 1:
 
-				int cLog = 0;
-				do {
+//				int cLog = 0;
+//				do {
 					log.info("Enter your LOGIN");
 					String login = sc.nextLine();
 					log.info("Enter your PASSWORD");
@@ -108,7 +109,8 @@ public class Driver {
 										log.info("==============================");
 										log.info("  (1) Cars for Sale");
 										log.info("  (2) My cars");
-										log.info("  (3) Exit");
+										log.info("  (3) My loans");
+										log.info("  (4) Exit");
 
 										try {
 											cMenuCar = Integer.parseInt(sc.nextLine());
@@ -122,6 +124,8 @@ public class Driver {
 											try {
 												List<Car> cars = carService.getCarsByStatus("for sale");
 												if (cars != null) {
+													log.info("Cars for Sale:");
+													log.info("------------------------");
 													for (Car c : cars) {
 														log.info(c);
 													}
@@ -130,7 +134,7 @@ public class Driver {
 												log.info(e.getMessage());
 											}
 											break;
-										// --1.1.2------------------------------------ My cars and balance
+										// --1.1.2------------------------------------ My cars
 										// -------------------------------------
 										case 2:
 											try {
@@ -145,15 +149,39 @@ public class Driver {
 											} catch (BusinessException e) {
 												log.info(e.getMessage());
 											}
-											// --1.1.3------------------------------ Exit Cars
+											break;
+											// --1.1.3------------------------------ Car Loan
 											// -----------------------------------------
+										case 3:
+
+											try {
+												log.info("Enter car id");
+												int carId = Integer.parseInt(sc.nextLine());
+											
+												Loan loan = loanService.getLoanById(carId);
+												
+												if (loan != null) {
+													log.info(loan);
+												} else {
+													log.info("You do not have loan for car with id " +carId);
+												}
+											} catch (BusinessException e) {
+												log.info(e.getMessage());
+											}
+
+											break;
+											// --1.1.4------------------------------ Exit Cars
+											// -----------------------------------------
+											
+										case 4:
+											log.info("<--");
 											break;
 										default:
 											log.info("Invalid menu option.Please try again!");
 											log.debug("DD113");
 											break;
 										} // Switch
-									} while (cMenuCar != 3);
+									} while (cMenuCar != 4);
 									break;
 
 								// --1.2------------------------------------ Offers
@@ -202,9 +230,12 @@ public class Driver {
 												List<Offer> offersList = offerService.getOffersByCustomerId(customerId);
 												if (offersList != null) {
 													log.info("Your offers :");
+													log.info("------------------------");
 													for (Offer o : offersList) {
 														log.info(o);
 													}
+												} else {
+													log.info("No offers found with customer id "+ customerId );
 												}
 											} catch (BusinessException e) {
 												log.info(e.getMessage());
@@ -212,7 +243,9 @@ public class Driver {
 											break;
 										// --1.2.3------------------------------ Exit Offers
 										// -----------------------------------------
-
+										case 3:
+											log.info("<--");
+											break;
 										default:
 											log.info("Invalid menu option.Please try again!");
 											log.debug("DD123");
@@ -243,23 +276,25 @@ public class Driver {
 										// --1.3.1------------------------------------ Pay for my car
 										// -------------------------------------
 										case 1:
-
+											
 											try {
 												log.info("Enter your car id");
 												int carId = Integer.parseInt(sc.nextLine());
 
 												log.info("Enter payment amount in $");
 												double amount = Double.parseDouble(sc.nextLine());
-
+												
 												Payment payment = new Payment(carId, amount, new Date());
-												int p = payService.createPayment(payment);
-												if (p != 0) {
+												int xy = payService.createPayment(payment);
+												log.debug(xy);
+												if (xy >= 2) {
 													log.info("You succsessfully payed $" + amount + " for car with id "
 															+ carId);
 												}
 											} catch (NumberFormatException e) {
 
 											} catch (BusinessException e) {
+												e.getStackTrace();
 												log.info(e.getMessage());
 											}
 
@@ -269,45 +304,60 @@ public class Driver {
 										// -------------------------------------
 
 										case 2:
-
-//										try {
-//
-//
-//											int p = 0;
-//											if (p !=0) {
-//												log.info("Payment history: ");
-//											}
-//										}catch (BusinessException e) {
-//											log.info(e.getMessage());
-//										} catch (NumberFormatException e) {
-//											log.info("Wrong format");
-//										}
+											
+											try {
+												log.info("Enter car id");
+												int carId = Integer.parseInt(sc.nextLine());
+												List<Payment> payments = payService.getAllPaymentsByCarId(carId);
+												if (payments != null) {
+													log.info("Payment history for a car with id "+carId);
+													log.info("------------------------");
+													for (Payment pay : payments) {
+														log.info(pay);
+													}
+												}
+											} catch (BusinessException e) {
+												log.info(e.getMessage());
+											} catch (NumberFormatException e) {
+												log.info("Wrong format");
+											}
+											
 
 											break;
 
 										// --1.3.3----------------------------------------- Exit
 										// Payments--------------------------------------------------------
+										case 3:
+											log.info("<--");
+											break;
 										default:
 											log.info("Invalid menu option.Please try again!");
 											log.debug("DD133");
 											break;
-										}
+										} 
 									} while (payMenu != 3);
 									break;
 
 								// --1.3.3------------------------------- Exit Customer menu (log
 								// out)------------------------------
-
+								case 4:
+									log.info("<--");
+									break;
+								default:
+									log.info("Invalid menu option.Please try again!");
+									log.debug("DD133");
+									break;
 								}
 							} while (cMenu != 4);
 							break;
 						} // if (c !=null)
+						
 					} catch (BusinessException e) {
-						log.debug(e.getMessage());
+						log.info(e.getMessage());
 					}
 					break;
-				} while (cLog != 1); // customer login
-				break;
+//				} while (cLog != 1); // customer login
+//				break;
 
 //----------------------------------------------------------------------------------
 //--2------------------------------------New Customer Registration Page-----------------------	
@@ -339,13 +389,13 @@ public class Driver {
 
 						log.info("Create new 4 to 12 long LOGIN");
 						log.info("Numbers or letters only");
-						String login = sc.nextLine();
+						String newLogin = sc.nextLine();
 						log.info("Create new 4 to 12 long PASSWORD");
 						log.info("Numbers or letters only");
-						String password = sc.nextLine();
+						String newPassword = sc.nextLine();
 
 						// Create new Login
-						CustomerLogin customerLogin = new CustomerLogin(login, password);
+						CustomerLogin customerLogin = new CustomerLogin(newLogin, newPassword);
 
 						if (loginService.createCustomerAndLogin(customer, customerLogin) == 2) {
 							log.info("Registration completed successfully. Now you can log in");
@@ -368,12 +418,12 @@ public class Driver {
 				int eLog = 0;
 				do {
 					log.info("Enter your EMPLOYEE ID");
-					String login = sc.nextLine();
+					String eLogin = sc.nextLine();
 					log.info("Enter your PASSWORD");
-					String password = sc.nextLine();
+					String ePassword = sc.nextLine();
 
 					try {
-						EmployeeLogin employee = loginService.letEmployeeLogin(login, password);
+						EmployeeLogin employee = loginService.letEmployeeLogin(eLogin, ePassword);
 
 						if (employee != null) {
 							int eMenu = 0;
@@ -443,6 +493,8 @@ public class Driver {
 											try {
 												List<Car> cars = carService.getCarsByStatus("for sale");
 												if (cars != null) {
+													log.info("Cars for Sale: ");
+													log.info("------------------------");
 													for (Car c : cars) {
 														log.info(c);
 													}
@@ -458,6 +510,8 @@ public class Driver {
 											try {
 												List<Car> cars = carService.getCarsByStatus("sold");
 												if (cars != null) {
+													log.info("Sold Cars: ");
+													log.info("------------------------");
 													for (Car c : cars) {
 														log.info(c);
 													}
@@ -484,7 +538,7 @@ public class Driver {
 												String color = sc.nextLine();
 												log.info("Enter MILEAGE)");
 												float mileage = Float.parseFloat(sc.nextLine());
-												log.info("Enter VIN");
+												log.info("Enter VIN (17 digits)");
 												String vin = sc.nextLine();
 
 												Car car = new Car(body, make, model, year, color, mileage, vin,
@@ -522,14 +576,16 @@ public class Driver {
 											break;
 										// --3.1.6------------------------------------Exit
 										// Cars--------------------------------
-
+										case 6:
+											log.info("<--");
+											break;
 										default:
 											log.info("Invalid menu option.Please try again!");
 											log.debug("DD316");
 											break;
 
 										}
-									} while (eMenuCar != 3);
+									} while (eMenuCar != 6);
 
 									break;
 
@@ -541,11 +597,13 @@ public class Driver {
 									do {
 										log.info("");
 										log.info("==============================");
-										log.info("    OFFERS");
+										log.info("    ALL OFFERS");
 										log.info("==============================");
-										log.info("  (1) All Offers");
-										log.info("  (2) Find an Offer");
-										log.info("  (3) Exit");
+										log.info("  (1) All Pending Offers");
+										log.info("  (2) All Rejected Offers");
+										log.info("  (3) Offers for specific car");
+										log.info("  (4) Find an Offer");
+										log.info("  (5) Exit");
 
 										try {
 											eMenuOffer = Integer.parseInt(sc.nextLine());
@@ -553,59 +611,44 @@ public class Driver {
 										}
 
 										switch (eMenuOffer) {
-										// --3.2.1------------------------------------ All offers
-										// -------------------------------------
-										case 1:
 
-											int allOffers = 0;
-											do {
-												log.info("");
-												log.info("==============================");
-												log.info("    ALL OFFERS");
-												log.info("==============================");
-												log.info("  (1) All Pending Offers");
-												log.info("  (2) All Rejected Offers");
-												log.info("  (3) Offers for specific car");
-												log.info("  (4) Exit");
-
-												try {
-													allOffers = Integer.parseInt(sc.nextLine());
-												} catch (NumberFormatException e) {
-												}
-
-												switch (allOffers) {
-
-												// --3.2.1.1------------------------------------ Pending offers
+												// --3.2.1.------------------------------------ All Pending offers
 												// -------------------------------------
 												case 1:
 													try {
 														List<Offer> offers = offerService.getOffersByStatus("pending");
 														if (offers != null) {
-															log.info("All pending offers");
+															log.info("All pending offers:");
+															log.info("-----------------------------");
 															for (Offer o : offers) {
 																log.info(o);
 															}
+														} else {
+															log.info("There is not any pending offers");
 														}
 													} catch (BusinessException e) {
 														log.info(e.getMessage());
 													}
 													break;
-												// --3.2.1.2------------------------------------ Rejected offers
+												// --3.2.2------------------------------------ Rejected offers
 												// -------------------------------------
 												case 2:
 													try {
 														List<Offer> offers = offerService.getOffersByStatus("rejected");
 														if (offers != null) {
-															log.info("All rejected offers");
+															log.info("All rejected offers:");
+															log.info("-----------------------------");
 															for (Offer o : offers) {
 																log.info(o);
 															}
+														}else {
+															log.info("There is not any rejected offers");
 														}
 													} catch (BusinessException e) {
 														log.info(e.getMessage());
 													}
 													break;
-												// --3.2.1.3------------------------------------ all offers for a single
+												// --3.2.3------------------------------------ all offers for a single
 												// Cars -------------------------------------
 												case 3:
 													log.info("Enter a Car ID");
@@ -614,9 +657,12 @@ public class Driver {
 														List<Offer> offers = offerService.getOffersByCarId(id);
 														if (offers != null) {
 															log.info("All offers for car with  id " + id);
+															log.info("-------------------------------------------");
 															for (Offer o : offers) {
 																log.info(o);
 															}
+														} else {
+															log.info("No offers found for a car wit id " + id);
 														}
 													} catch (NumberFormatException e) {
 													} catch (BusinessException e) {
@@ -624,18 +670,11 @@ public class Driver {
 													}
 
 													break;
-												default:
-													log.info("Invalid menu option.Please try again!");
-													log.debug("DD3213");
-													break;
-												}
-											} while (allOffers != 4);
 
-											break;
 
-										// --3.2.2------------------------------------ Find an offer by ID
+										// --3.2.4------------------------------------ Find an offer by ID
 										// -------------------------------------
-										case 2:
+										case 4:
 
 											try {
 												log.info("Enter an Offer ID");
@@ -647,9 +686,8 @@ public class Driver {
 													int oneOffer = 0;
 													do {
 														log.info("");
-														log.info("==============================");
 														log.info(" " + offer);
-														log.info("==============================");
+														log.info("---------------------------------------------------------------------------------");
 														log.info("  (1) Approve");
 														log.info("  (2) Reject");
 														log.info("  (3) Exit");
@@ -692,6 +730,10 @@ public class Driver {
 															}
 															oneOffer = 3;
 															break;
+														case 3:
+															log.info("<--");
+															break;	
+															
 
 														default:
 															log.info("Invalid menu option.Please try again DD251!");
@@ -709,18 +751,37 @@ public class Driver {
 											break;
 										// --2.6------------------------------------ Exit Offers
 										// -------------------------------------
+										case 5:
+											log.info("<--");
+											break;
 										default:
 											log.info("Invalid menu option.Please try again!");
 											log.debug("DD26");
 											break;
 										}
 
-									} while (eMenuOffer != 3);
+									} while (eMenuOffer != 5);
 									break;
 								// --3.6------------------------------------ Find a customer by id
 								// -------------------------------------
+//									!!!
+									
 								case 3:
+									try {
+										log.info("Enter Customer ID");
+										int id = Integer.parseInt(sc.nextLine());
+										Customer customer = loginService.getCustomerById(id);
+										if (customer != null) {
 
+											log.info(customer);
+
+										} else {
+											log.info("There is no customer with id " +id);
+										}
+									} catch (NumberFormatException e) {
+									} catch (BusinessException e) {
+										log.info(e.getMessage());
+									}
 									break;
 
 								// --3.7------------------------------------ View Payments
@@ -737,6 +798,10 @@ public class Driver {
 										log.info("  (1) All Payments");
 										log.info("  (2) All Payments for a car");
 										log.info("  (3) Exit");
+										try {
+											ePay = Integer.parseInt(sc.nextLine());
+										} catch (NumberFormatException e) {
+										}
 
 										switch (ePay) {
 
@@ -744,9 +809,9 @@ public class Driver {
 										// -------------------------------------
 										case 1:
 											try {
-												List<Payment> payments = payService.getAllPaynemts();
+												List<Payment> payments = payService.getAllPayments();
 												if (payments != null) {
-													log.info("    All payments: ");
+													log.info("All payments: ");
 													log.info("--------------------------");
 													for (Payment p : payments) {
 														log.info(p);
@@ -763,7 +828,7 @@ public class Driver {
 											log.info("Enter a Car ID");
 											try {
 												int carId = Integer.parseInt(sc.nextLine());
-												List<Payment> payments = payService.getAllPaynemtsByCarId(carId);
+												List<Payment> payments = payService.getAllPaymentsByCarId(carId);
 												if (payments != null) {
 													log.info("All payments for car with  id " + carId + " :");
 													log.info("--------------------------------------");
@@ -778,6 +843,9 @@ public class Driver {
 											break;
 										// --3.7.3---------------------------------Exit
 										// Payments---------------------------------------
+										case 3:
+											log.info("<--");
+											break;
 										default:
 											log.info("Invalid menu option.Please try again!");
 											log.debug("DD373");
@@ -788,6 +856,9 @@ public class Driver {
 
 								// --8-------------------------Employee menu exit (log out)
 								// -------------------------------------------
+								case 5:
+									log.info("<--");
+									break;
 								default:
 									log.info("Invalid menu option.Please try again!");
 									log.debug("DD8");
@@ -804,8 +875,11 @@ public class Driver {
 				} while (eLog != 1); // employee login
 				break;
 //-----------------------------------------End of main menu ----------------------------------------------------
+			case 4:
+				log.info("Bye...See you soon! ");
+				break;
 			default:
-				log.info("Invalid menu option.Please try again! ");
+				log.info("Invalid menu option.Please try again!");
 				log.debug("DDEnd");
 
 			} // switch ch

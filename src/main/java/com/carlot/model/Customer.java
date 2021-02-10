@@ -90,7 +90,7 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "id : " + id + " | firstName : " + firstName + " | lastName | " + lastName + " | dob : " + dob + " | dl : "
+		return "id : " + id + " | first name : " + firstName + " | last name : " + lastName + " | dob : " + dob + " | dl : "
 				+ dl + " | ssn : " + ssn + " | contact : " + contact + " | address : " + address;
 	}
 

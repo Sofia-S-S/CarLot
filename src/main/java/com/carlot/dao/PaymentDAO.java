@@ -8,8 +8,8 @@ import com.carlot.model.Payment;
 public interface PaymentDAO {
 
 	// Create payment and update remaining loan
-	int createPayment(Payment payment) throws BusinessException;
+	int createPayment(Payment payment, double balance) throws BusinessException;
 
-	List<Payment> getAllPaynemts() throws BusinessException;
+	List<Payment> getAllPayments() throws BusinessException;
 
 }

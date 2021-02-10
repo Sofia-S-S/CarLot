@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.carlot.dao.LoginDAO;
 import com.carlot.dbutil.PostresqlConnection;
 import com.carlot.exception.BusinessException;
@@ -13,6 +16,8 @@ import com.carlot.model.CustomerLogin;
 import com.carlot.model.EmployeeLogin;
 
 public class LoginDAOImpl implements LoginDAO {
+	
+	public static final Logger log = LogManager.getFormatterLogger(LoginDAOImpl.class); // v2 set up
 
 //--------------------------------------Customer Log In -------------------------------------
 	@Override
@@ -36,8 +41,8 @@ public class LoginDAOImpl implements LoginDAO {
 
 				throw new BusinessException("No customer found with such login or password");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
-			System.out.println("exception in DAO");
+		} catch (SQLException e) {
+			log.debug(e);
 
 			throw new BusinessException("Internal error occured contact admin ");
 		}
@@ -64,15 +69,16 @@ public class LoginDAOImpl implements LoginDAO {
 			}else {
 				throw new BusinessException("No employee found with id and password ");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
-			
+		} catch (SQLException e) {
+			log.debug(e);
 			throw new BusinessException("Some internal error occured. Please contact admin");
 		
 			
 		} 
 		return employeeLogin;
 	}
-
+	
+ //-----------------------------------Create Customer AND Create CustomerLogin
 	@Override
 	public int createCustomerAndLogin(Customer customer, CustomerLogin customerLogin) throws BusinessException {
 		int cl = 0;
@@ -104,12 +110,44 @@ public class LoginDAOImpl implements LoginDAO {
 			
 			cl= c+l;
 			
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			
-			System.out.println(e);
+			log.debug(e);
 			throw new BusinessException("Some internal error occured. Please contact admin");
 		}
 		return cl;
+	}
+
+	//--------------------------------Find Customer------------------------------------------
+	@Override
+	public Customer getCustomerById(int id) throws BusinessException {
+		Customer customer = null;
+		try (Connection connection = PostresqlConnection.getConnection()) {
+			String sql = "Select first_name, last_name, dob, dl, ssn, contact, address from carlot.customer where id = ? ";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				customer = new Customer();
+				customer.setId(id);
+				customer.setFirstName(resultSet.getString("first_name"));
+				customer.setLastName(resultSet.getString("last_name"));
+				customer.setDob(resultSet.getDate("dob"));
+				customer.setDl(resultSet.getString("dl"));
+				customer.setSsn(resultSet.getLong("ssn"));
+				customer.setContact(resultSet.getLong("contact"));
+				customer.setAddress(resultSet.getString("address"));
+
+			} else {
+
+				throw new BusinessException("No customer found with id " + id);
+			}
+		} catch (SQLException e) {
+			log.debug(e);
+			throw new BusinessException("Internal error occured contact admin ");
+		}
+		return customer;
 	}
 
 }

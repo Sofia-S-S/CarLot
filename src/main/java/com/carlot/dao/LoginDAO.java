@@ -7,9 +7,10 @@ import com.carlot.model.EmployeeLogin;
 
 public interface LoginDAO {
 	
-	public CustomerLogin letCustomerLogin(String login,String password) throws BusinessException;
-	public EmployeeLogin letEmployeeLogin(String employeeId,String password) throws BusinessException;
+	CustomerLogin letCustomerLogin(String login,String password) throws BusinessException;
+	EmployeeLogin letEmployeeLogin(String employeeId,String password) throws BusinessException;
 	
-	public int createCustomerAndLogin(Customer customer, CustomerLogin customerLogin) throws BusinessException;
+	int createCustomerAndLogin(Customer customer, CustomerLogin customerLogin) throws BusinessException;
+	Customer getCustomerById (int id) throws BusinessException;
 
 }

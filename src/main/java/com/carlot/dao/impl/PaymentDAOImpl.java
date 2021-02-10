@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.carlot.dao.PaymentDAO;
 import com.carlot.dbutil.PostresqlConnection;
 import com.carlot.exception.BusinessException;
@@ -16,42 +19,54 @@ import com.carlot.model.Payment;
 
 public class PaymentDAOImpl implements PaymentDAO {
 
-
+	public static final Logger log = LogManager.getFormatterLogger(LoanDAOImpl.class); // v2 set up
 
 	@Override
-	public int createPayment(Payment payment) throws BusinessException {
-		int c = 0;
+	public int createPayment(Payment payment, double balance) throws BusinessException {
+		int xy = 0;
 		try (Connection connection = PostresqlConnection.getConnection()) {
-			String sql = "insert into carlot.payment (payment_id, car_id, amount, date) values(?,?,?,?)";
+			String sqlPayment = "insert into carlot.payment (car_id, amount, date) values(?,?,?)";
+			String sqlLoan = "update carlot.loan set remaining_balance = ? where car_id = ?";
 
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			PreparedStatement preparedStatementPayment = connection.prepareStatement(sqlPayment);
+			PreparedStatement preparedStatementLoan = connection.prepareStatement(sqlLoan);
+			
+			connection.setAutoCommit(false); // !!!
 
-			preparedStatement.setLong(1, payment.getPaymentId());
-			preparedStatement.setInt(2, payment.getCarId());
-			preparedStatement.setDouble(3, payment.getAmount());
-			preparedStatement.setDate(4, new java.sql.Date(payment.getDate().getTime()));
+			preparedStatementPayment.setInt(1, payment.getCarId());
+			preparedStatementPayment.setDouble(2, payment.getAmount());
+			preparedStatementPayment.setDate(3, new java.sql.Date(payment.getDate().getTime()));
+			int x = preparedStatementPayment.executeUpdate();
+			
+			preparedStatementLoan.setDouble(1, balance);
+			preparedStatementLoan.setInt(2, payment.getCarId());
+			int y = preparedStatementLoan.executeUpdate();
+			
+			connection.commit(); // !!!
+			
+			xy = x+y;
 
-			c = preparedStatement.executeUpdate();
-
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
+			
+			log.debug(e);
 
 			throw new BusinessException("Some internal error occured. Please contact admin");
 		}
-		return c;
+		return xy;
 	}
 
 	@Override
-	public List<Payment> getAllPaynemts() throws BusinessException {
+	public List<Payment> getAllPayments() throws BusinessException {
 		List<Payment> paymentsList = new ArrayList<>();
 		try (Connection connection = PostresqlConnection.getConnection()) {
-			String sql="select payment_id, car_id, amount, model, date";
+			String sql="select payment_id, car_id, amount, date from carlot.payment";
 			PreparedStatement preparedStatement=connection.prepareStatement(sql);
 
 			ResultSet resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				Payment pay =new Payment();
-				pay.setPaymentId(resultSet.getLong("paymentId"));
-				pay.setCarId(resultSet.getInt("CarId"));
+				pay.setPaymentId(resultSet.getLong("payment_id"));
+				pay.setCarId(resultSet.getInt("car_id"));
 				pay.setAmount(resultSet.getDouble("amount"));
 				pay.setDate(resultSet.getDate("date"));
 				paymentsList.add(pay);
@@ -60,7 +75,9 @@ public class PaymentDAOImpl implements PaymentDAO {
 			{
 				throw new BusinessException("No payments found");
 			}
-		}catch (ClassNotFoundException | SQLException e) {
+		}catch (SQLException e) {
+			
+			log.debug(e);
 
 			throw new BusinessException("Internal error occured contact admin ");
 		}

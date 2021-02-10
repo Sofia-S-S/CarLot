@@ -86,4 +86,15 @@ public class LoginServiceImpl implements LoginService{
 		return c;
 	}
 
+	@Override
+	public Customer getCustomerById(int id) throws BusinessException {
+		Customer customer = null;
+		if(id> 9 && id < 2147483647) {
+		customer = dao.getCustomerById(id);
+		} else {
+			throw new BusinessException("Customer id " + id + " is INVALID......");
+		}
+		return customer;
+	}
+
 }

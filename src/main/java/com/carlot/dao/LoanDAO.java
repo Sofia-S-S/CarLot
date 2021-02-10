@@ -6,4 +6,5 @@ import com.carlot.model.Loan;
 public interface LoanDAO {
 	
 	int createLoan(Loan loan) throws BusinessException;
+	Loan getLoanById (int carId) throws BusinessException;
 }

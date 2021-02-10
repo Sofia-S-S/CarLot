@@ -1,5 +1,6 @@
 package com.carlot.service.impl;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -26,17 +27,12 @@ public class LoanServiceImpl implements LoanService  {
 		return c;
 	}
 	
-//	Rates by Credit Score for 48 months: 
-//	781-850: 3.80% APR
-//	661-780: 5.48% APR
-//	601-660: 10.10% APR
-//	501-600: 16.27% APR
-//	300-500: 19.32% APR
+
 
 	@Override
 	public int calculateLoan(int carId, Double amount, int term, int creditScore) throws BusinessException {
 		
-		Double rate = null;
+		double rate = 0;
 		if (creditScore >= 780) {
 			 rate = 3.80;
 		} else if (creditScore >= 660 && creditScore < 780) {
@@ -49,17 +45,27 @@ public class LoanServiceImpl implements LoanService  {
 			 rate = 19.32;
 		} else {log.info("Creadit Score is too loo for loan");
 		}
-		Double interest = amount*rate/100;
+		double interest = amount*rate/100;
 	
-		Double remaining = amount + interest;
-		Double monthly = remaining/( term * 12);
+		double remaining = amount + interest;
+		double monthly = remaining/( term * 12);
+		DecimalFormat df = new DecimalFormat("#.##");
+		double monthlyPayment = Double.parseDouble(df.format(monthly));
 		
 		log.debug("interest = "+interest);
 		log.debug("monthly = "+monthly);
 		
-		Loan loan = new Loan(carId,amount,rate,term,interest,monthly,remaining, new Date());
+		Loan loan = new Loan(carId,amount,rate,term,interest,monthlyPayment,remaining, new Date());
 		int c = dao.createLoan(loan);
 		return c;
+	}
+
+
+
+	@Override
+	public Loan getLoanById(int carId) throws BusinessException {
+		Loan loan = dao.getLoanById(carId);
+		return loan;
 	}
 
 }

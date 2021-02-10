@@ -8,7 +8,8 @@ import com.carlot.model.Car;
 
 public interface CarDAO {
 	
-	List<Car> getCarsByStatus (String status) throws BusinessException;
+	List<Car> getAllCars () throws BusinessException;
+
 	List <Car> getCarsByCustomer (int customerId) throws BusinessException;
 
 	Car getCarById (int id) throws BusinessException;
